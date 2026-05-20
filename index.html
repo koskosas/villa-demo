@@ -2,1980 +2,929 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Villa Solaris - Private Estate, Santorini</title>
-<meta name="description" content="Villa Solaris is a private clifftop villa estate in Santorini with five bedrooms, an infinity pool, concierge service, private chef options, and caldera views."/>
-
-<link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)"/>
-<link rel="preconnect" href="[fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin/>
-<link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@200;300;400;500&display=swap)" rel="stylesheet"/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Villa Solaris — Private Estate, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet"/>
 <style>
-*,*::before,*::after{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-:root{
-  --warm:#f0ebe2;
-  --warm-dim:#a89c8c;
-  --terra:#c07a52;
-  --terra-hi:#d8967a;
-  --terra-lo:#7a4e32;
-  --ink:#0d0b08;
-  --ink2:#161310;
-  --ink3:#1f1b16;
-  --ink4:#2a2520;
-  --stone:#f5f0e8;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Inter',Arial,sans-serif;
-}
-
-html{
-  scroll-behavior:smooth;
-  -webkit-text-size-adjust:100%;
-}
-
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:var(--ink);
-  color:var(--warm);
-  font-family:var(--sans);
-  font-weight:300;
+  background:#0c0a07;color:#ede8df;
+  font-family:'Inter',sans-serif;font-weight:300;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-
-body.menu-open{
-  overflow:hidden;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-button,
-input,
-select{
-  font:inherit;
-}
-
-button,
-a{
-  touch-action:manipulation;
-}
-
-section,
-div{
-  scroll-margin-top:90px;
-}
-
-/* Loader */
-#loader{
-  position:fixed;
-  inset:0;
-  background:var(--ink);
-  z-index:10000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:1.5rem;
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transition:opacity .8s ease,visibility .8s ease;
-}
-
-#loader.out,
-body.loaded #loader{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-.ld-logo{
-  font-family:var(--serif);
-  font-size:clamp(1.4rem,5vw,2rem);
-  font-style:italic;
-  color:var(--warm);
-  opacity:0;
-  animation:ldFade .8s .2s ease forwards;
-}
-
-.ld-sub{
-  font-size:clamp(.42rem,2vw,.52rem);
-  letter-spacing:.45em;
-  text-transform:uppercase;
-  color:var(--terra);
-  opacity:0;
-  animation:ldFade .8s .45s ease forwards;
-}
-
-.ld-bar-wrap{
-  width:min(200px,60vw);
-  height:1px;
-  background:rgba(255,255,255,.08);
-}
-
-.ld-bar{
-  height:100%;
-  width:0;
-  background:var(--terra);
-  animation:ldBar 1.8s .35s ease forwards;
-}
-
-@keyframes ldBar{
-  to{width:100%}
-}
-
-@keyframes ldFade{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* Nav */
-#nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:500;
-  padding:clamp(1rem,3vw,2.2rem) clamp(1.2rem,4vw,4rem);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  transition:padding .5s,background .5s,backdrop-filter .5s;
-}
-
-#nav.compact,
-body.menu-open #nav{
-  padding:1rem clamp(1.2rem,4vw,4rem);
-  background:rgba(13,11,8,.92);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.nav-logo{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(.95rem,2.5vw,1.15rem);
-  color:var(--warm);
-  line-height:1;
-  z-index:502;
-}
-
-.nav-logo span{
-  display:block;
-  font-family:var(--sans);
-  font-style:normal;
-  font-size:clamp(.38rem,1.2vw,.44rem);
-  letter-spacing:.5em;
-  text-transform:uppercase;
-  color:var(--terra);
-  margin-bottom:.15rem;
-  font-weight:300;
-}
-
-.nav-links{
-  display:none;
-  gap:clamp(1.5rem,3vw,3rem);
-  list-style:none;
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.nav-links a{
-  font-size:clamp(.48rem,1.2vw,.56rem);
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.5);
-  transition:color .3s;
-  font-weight:300;
-}
-
-.nav-links a:hover{
-  color:var(--warm);
-}
-
-.nav-cta{
-  display:none;
-  font-size:clamp(.48rem,1.2vw,.54rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--ink);
-  background:var(--terra);
-  padding:.6rem clamp(.9rem,2vw,1.5rem);
-  font-weight:400;
-  transition:background .3s;
-}
-
-.nav-cta:hover,
-.nav-cta:active{
-  background:var(--terra-hi);
-}
-
-.nav-burger{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:.45rem;
-  z-index:502;
-}
-
-.nb-line{
-  width:24px;
-  height:1px;
-  background:var(--warm);
-  transition:transform .3s,opacity .3s;
-}
-
-.mobile-menu{
-  display:flex;
-  position:fixed;
-  inset:0;
-  background:var(--ink2);
-  z-index:490;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:2.2rem;
-  opacity:0;
-  pointer-events:none;
-  visibility:hidden;
-  transform:translateY(-10px);
-  transition:opacity .4s ease,visibility .4s ease,transform .4s ease;
-}
-
-.mobile-menu.open{
-  opacity:1;
-  pointer-events:all;
-  visibility:visible;
-  transform:translateY(0);
-}
-
-.mm-link{
-  font-family:var(--serif);
-  font-size:clamp(1.8rem,8vw,2.5rem);
-  font-style:italic;
-  color:var(--warm);
-  font-weight:300;
-  transition:color .3s,transform .3s,opacity .3s;
-  opacity:0;
-  transform:translateY(18px);
-}
-
-.mobile-menu.open .mm-link,
-.mobile-menu.open .mm-cta{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.mobile-menu.open .mm-link:nth-child(1){transition-delay:.05s}
-.mobile-menu.open .mm-link:nth-child(2){transition-delay:.1s}
-.mobile-menu.open .mm-link:nth-child(3){transition-delay:.15s}
-.mobile-menu.open .mm-link:nth-child(4){transition-delay:.2s}
-.mobile-menu.open .mm-link:nth-child(5){transition-delay:.25s}
-.mobile-menu.open .mm-cta{transition-delay:.3s}
-
-.mm-link:hover,
-.mm-link:active{
-  color:var(--terra);
-}
-
-.mm-cta{
-  font-size:.58rem;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  background:var(--terra);
-  color:var(--ink);
-  padding:1rem 2.5rem;
-  margin-top:1rem;
-  opacity:0;
-  transform:translateY(18px);
-  transition:background .3s,transform .3s,opacity .3s;
-}
-
-@media(min-width:900px){
-  .nav-links{
-    display:flex;
-  }
-
-  .nav-cta{
-    display:inline-block;
-  }
-
-  .nav-burger{
-    display:none;
-  }
-
-  .mobile-menu{
-    display:none;
-  }
-}
-
-/* Hero */
-#hero{
-  height:100svh;
-  min-height:520px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  transition:opacity 1.8s ease;
-}
-
-.hero-slide.active{
-  opacity:1;
-}
-
-.hero-slide img{
-  transform:scale(1.08);
-  transition:transform 8s ease;
-  object-position:center;
-}
-
-.hero-slide.active img{
-  transform:scale(1);
-}
-
-.hero-grad{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to top,rgba(13,11,8,.9) 0%,rgba(13,11,8,.35) 50%,rgba(13,11,8,.2) 100%),
-    linear-gradient(100deg,rgba(13,11,8,.6) 0%,transparent 60%);
-}
-
-.hero-body{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:0 clamp(1.2rem,5vw,5rem) clamp(4.2rem,10vw,7rem);
-}
-
-.hero-eyebrow{
-  font-size:clamp(.42rem,1.8vw,.5rem);
-  letter-spacing:.38em;
-  text-transform:uppercase;
-  color:rgba(192,122,82,.85);
-  margin-bottom:clamp(1rem,3vw,2rem);
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  opacity:0;
-  animation:hFade .9s 1.5s ease forwards;
-}
-
-.hero-eyebrow::before{
-  content:'';
-  width:28px;
-  height:1px;
-  background:rgba(192,122,82,.5);
-}
-
-.hero-h1{
-  font-family:var(--serif);
-  font-weight:300;
-  font-size:clamp(2.65rem,12vw,8.5rem);
-  line-height:.92;
-  letter-spacing:-.02em;
-  color:var(--warm);
-  overflow:hidden;
-}
-
-.h1-line{
-  display:block;
-  transform:translateY(110%);
-  animation:lineUp .9s ease forwards;
-}
-
-.h1-line:nth-child(1){
-  animation-delay:1.25s;
-}
-
-.h1-line:nth-child(2){
-  animation-delay:1.4s;
-  font-style:italic;
-  color:rgba(192,122,82,.85);
-  padding-left:clamp(1rem,5vw,4rem);
-}
-
-.h1-line:nth-child(3){
-  animation-delay:1.55s;
-}
-
-@keyframes lineUp{
-  to{transform:translateY(0)}
-}
-
-@keyframes hFade{
-  to{opacity:1}
-}
-
-.hero-footer{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  flex-wrap:wrap;
-  gap:1.5rem;
-  margin-top:clamp(1.5rem,4vw,3rem);
-  opacity:0;
-  animation:hFade .9s 1.85s ease forwards;
-}
-
-.hero-desc{
-  font-size:clamp(.62rem,1.8vw,.7rem);
-  line-height:1.9;
-  color:rgba(240,235,226,.58);
-  max-width:360px;
-  border-left:1px solid rgba(192,122,82,.3);
-  padding-left:1.2rem;
-  letter-spacing:.03em;
-}
-
-.hero-actions{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:.9rem;
-}
-
-.hero-btn{
-  display:inline-block;
-  background:var(--terra);
-  color:var(--ink);
-  padding:.95rem clamp(1.5rem,3vw,2.8rem);
-  font-size:clamp(.5rem,1.5vw,.58rem);
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  font-weight:400;
-  transition:background .3s,transform .3s;
-}
-
-.hero-btn:hover,
-.hero-btn:active{
-  background:var(--terra-hi);
-}
-
-.hero-pills{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.5rem;
-}
-
-.pill{
-  font-size:clamp(.38rem,1.2vw,.46rem);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.12);
-  padding:.35rem .85rem;
-  color:rgba(240,235,226,.42);
-}
-
-.hero-dots{
-  position:absolute;
-  right:clamp(1rem,3vw,3.5rem);
-  top:50%;
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:.7rem;
-  z-index:3;
-}
-
-.h-dot{
-  width:28px;
-  height:3px;
-  background:rgba(255,255,255,.2);
-  cursor:pointer;
-  transition:width .4s,background .4s,height .4s;
-  border:none;
-}
-
-.h-dot.active{
-  width:42px;
-  background:var(--terra);
-}
-
-.scroll-hint{
-  position:absolute;
-  bottom:clamp(1rem,3vw,2.5rem);
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.6rem;
-  opacity:.4;
-  z-index:3;
-}
-
-.sh-line{
-  width:1px;
-  height:40px;
-  background:var(--warm-dim);
-  overflow:hidden;
-  position:relative;
-}
-
-.sh-line::after{
-  content:'';
-  position:absolute;
-  top:-100%;
-  left:0;
-  width:100%;
-  height:100%;
-  background:var(--terra);
-  animation:shDrop 1.8s ease-in-out infinite;
-}
-
-@keyframes shDrop{
-  from{top:-100%}
-  to{top:200%}
-}
-
-.sh-label{
-  font-size:.4rem;
-  letter-spacing:.35em;
-  text-transform:uppercase;
-  color:var(--warm-dim);
-}
-
-@media(min-width:600px){
-  #hero{
-    min-height:600px;
-  }
-
-  .hero-actions{
-    align-items:flex-end;
-  }
-
-  .hero-footer{
-    align-items:flex-end;
-  }
-
-  .h-dot{
-    width:2px;
-    height:18px;
-  }
-
-  .h-dot.active{
-    width:2px;
-    height:36px;
-  }
-}
-
-/* Marquee */
-.marquee-wrap{
-  background:var(--ink2);
-  overflow:hidden;
-  padding:1.2rem 0;
-  border-top:1px solid rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.marquee-track{
-  display:flex;
-  white-space:nowrap;
-  animation:mq 35s linear infinite;
-}
-
-.marquee-track:hover{
-  animation-play-state:paused;
-}
-
-@keyframes mq{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-
-.mq-item{
-  display:inline-flex;
-  align-items:center;
-  gap:1rem;
-  padding:0 2rem;
-  border-right:1px solid rgba(255,255,255,.06);
-}
-
-.mq-n{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(1rem,3vw,1.6rem);
-  color:var(--terra);
-  line-height:1;
-}
-
-.mq-t{
-  font-size:clamp(.4rem,1.2vw,.5rem);
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.28);
-}
-
-/* Section utils */
-.s{
-  padding:clamp(4rem,10vw,10rem) clamp(1.2rem,5vw,5rem);
-}
-
-.s-dark{
-  background:var(--ink2);
-}
-
-.s-label{
-  font-size:clamp(.42rem,1.5vw,.5rem);
-  letter-spacing:.45em;
-  text-transform:uppercase;
-  color:var(--terra);
-  margin-bottom:1.5rem;
-  display:flex;
-  align-items:center;
-  gap:1rem;
-}
-
-.s-label::before{
-  content:'';
-  width:22px;
-  height:1px;
-  background:var(--terra);
-}
-
-.s-h{
-  font-family:var(--serif);
-  font-weight:300;
-  line-height:1;
-  font-size:clamp(2rem,5vw,4.5rem);
-  letter-spacing:-.01em;
-}
-
-.s-h em{
-  font-style:italic;
-  color:var(--terra);
-}
-
-.s-h.dark{
-  color:var(--ink);
-}
-
-.s-h.dark em{
-  color:var(--terra-lo);
-}
-
-.divider{
-  width:44px;
-  height:1px;
-  background:rgba(192,122,82,.25);
-  margin:2rem 0;
-}
-
-/* Reveal animations */
-.reveal{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .85s ease,transform .85s ease;
-}
-
-.reveal.r-l{
-  transform:translateX(-28px);
-}
-
-.reveal.r-r{
-  transform:translateX(28px);
-}
-
-.reveal.r-s{
-  transform:scale(.96);
-}
-
-.reveal.in{
-  opacity:1;
-  transform:none;
-}
-
-.reveal.d1{transition-delay:.12s}
-.reveal.d2{transition-delay:.24s}
-.reveal.d3{transition-delay:.36s}
-
-/* Story */
-.story-stack{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
-
-.story-card{
-  position:relative;
-  overflow:hidden;
-  min-height:90vw;
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-
-.story-card.in{
-  opacity:1;
-  transform:none;
-}
-
-.story-card img{
-  position:absolute;
-  inset:0;
-  transform:scale(1.06);
-  transition:transform 1.2s ease;
-}
-
-.story-card.in img{
-  transform:scale(1);
-}
-
-.sc-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(13,11,8,.82) 0%,rgba(13,11,8,.25) 60%,rgba(13,11,8,.15) 100%);
-}
-
-.sc-body{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  padding:clamp(1.5rem,5vw,3rem);
-}
-
-.sc-num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(2.5rem,8vw,4.5rem);
-  color:rgba(255,255,255,.06);
-  line-height:1;
-  margin-bottom:-.5rem;
-}
-
-.sc-title{
-  font-family:var(--serif);
-  font-weight:300;
-  font-size:clamp(1.5rem,4vw,2.5rem);
-  color:var(--warm);
-  line-height:1.05;
-  margin-bottom:.8rem;
-}
-
-.sc-title em{
-  font-style:italic;
-  color:var(--terra-hi);
-}
-
-.sc-text{
-  font-size:clamp(.6rem,2vw,.72rem);
-  line-height:1.9;
-  color:rgba(240,235,226,.55);
-  max-width:500px;
-  letter-spacing:.03em;
-}
-
-.story-sticky-wrap{
-  display:none;
-}
-
-@media(min-width:600px){
-  .story-card{
-    min-height:60vw;
-    max-height:70vh;
-  }
-}
-
+:root{
+  --warm:#ede8df;--warm-dim:#a89c8c;--warm-lo:#6b6055;
+  --gold:#b8914a;--gold-hi:#d4a85c;--gold-lo:#7a5e2e;
+  --ink:#0c0a07;--ink2:#141108;--ink3:#1c1710;--ink4:#252016;
+  --stone:#f2ece0;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',sans-serif;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* CURSOR */
+#cur-dot,#cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .3s}
+#cur-dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
+#cur-ring{width:38px;height:38px;border:1px solid rgba(184,145,74,.35);border-radius:50%;transition:width .35s cubic-bezier(.23,1,.32,1),height .35s cubic-bezier(.23,1,.32,1),border-color .35s}
+body.cur-hover #cur-dot{width:9px;height:9px}
+body.cur-hover #cur-ring{width:56px;height:56px;border-color:rgba(184,145,74,.6)}
+@media(hover:none){#cur-dot,#cur-ring{display:none}}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--ink);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:opacity 1.2s ease,visibility 1.2s ease}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none}
+.ld-logo{font-family:var(--serif);font-size:clamp(1.6rem,5vw,2.2rem);font-style:italic;font-weight:300;color:var(--warm);opacity:0;animation:ldFade .8s .3s ease forwards;letter-spacing:.04em}
+.ld-sub{font-size:clamp(.4rem,2vw,.5rem);letter-spacing:.5em;text-transform:uppercase;color:var(--gold);opacity:0;animation:ldFade .8s .6s ease forwards}
+.ld-bar-wrap{width:min(180px,55vw);height:1px;background:rgba(255,255,255,.06);margin-top:.5rem}
+.ld-bar{height:100%;width:0;background:var(--gold);animation:ldBar 2.4s .5s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes ldBar{to{width:100%}}
+@keyframes ldFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:clamp(1rem,3vw,2rem) clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;transition:padding .5s,background .5s,backdrop-filter .5s}
+#nav.compact{padding:.9rem clamp(1.2rem,4vw,4rem);background:rgba(12,10,7,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2.5vw,1.2rem);color:var(--warm);line-height:1;z-index:2;font-weight:300}
+.nav-logo span{display:block;font-family:var(--sans);font-style:normal;font-size:clamp(.36rem,1.1vw,.42rem);letter-spacing:.55em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;font-weight:300}
+.nav-links{display:flex;gap:clamp(1.5rem,3vw,3rem);list-style:none;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-links a{font-size:clamp(.46rem,1.1vw,.54rem);letter-spacing:.24em;text-transform:uppercase;color:rgba(237,232,223,.45);transition:color .3s;font-weight:300}
+.nav-links a:hover{color:var(--warm)}
+.nav-cta{font-size:clamp(.46rem,1.1vw,.52rem);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:.65rem clamp(.9rem,2vw,1.6rem);font-weight:400;transition:background .3s}
+.nav-cta:hover{background:var(--gold-hi)}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.3rem;z-index:2}
+.nb-line{width:22px;height:1px;background:var(--warm);transition:transform .3s,opacity .3s}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--ink2);z-index:490;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mm-link{font-family:var(--serif);font-size:clamp(2rem,9vw,2.8rem);font-style:italic;color:var(--warm);font-weight:300;transition:color .3s}
+.mm-link:hover{color:var(--gold)}
+.mm-cta{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:1rem 2.8rem;margin-top:.5rem}
+@media(max-width:900px){.nav-links{display:none}.nav-cta{display:none}.nav-burger{display:flex}.mobile-menu{display:flex}}
+
+/* HERO */
+#hero{height:100svh;position:relative;overflow:hidden;min-height:600px}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{transform:scale(1.06);transition:transform 9s ease;object-position:center}
+.hero-slide.active img{transform:scale(1)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,7,.92) 0%,rgba(12,10,7,.3) 45%,rgba(12,10,7,.1) 100%),linear-gradient(90deg,rgba(12,10,7,.5) 0%,transparent 55%)}
+.hero-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.4rem,5vw,5rem) clamp(4.5rem,9vw,6.5rem)}
+.hero-eyebrow{font-size:clamp(.4rem,1.8vw,.48rem);letter-spacing:.55em;text-transform:uppercase;color:rgba(184,145,74,.85);margin-bottom:clamp(.8rem,2.5vw,1.8rem);display:flex;align-items:center;gap:1rem;opacity:0;animation:hFade .9s 2.8s ease forwards}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:rgba(184,145,74,.5)}
+.hero-h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,9.5vw,9rem);line-height:.9;letter-spacing:-.01em;color:var(--warm);overflow:hidden}
+.h1-line{display:block;transform:translateY(110%);animation:lineUp .95s cubic-bezier(.16,1,.3,1) forwards}
+.h1-line:nth-child(1){animation-delay:2.5s}
+.h1-line:nth-child(2){animation-delay:2.65s;font-style:italic;color:rgba(184,145,74,.9);padding-left:clamp(.8rem,4vw,3.5rem)}
+.h1-line:nth-child(3){animation-delay:2.8s}
+@keyframes lineUp{to{transform:translateY(0)}}
+@keyframes hFade{to{opacity:1}}
+.hero-footer{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-top:clamp(1.2rem,3.5vw,2.5rem);opacity:0;animation:hFade .9s 3.1s ease forwards}
+.hero-desc{font-size:clamp(.58rem,1.7vw,.68rem);line-height:2;color:rgba(237,232,223,.45);max-width:340px;border-left:1px solid rgba(184,145,74,.25);padding-left:1.2rem;letter-spacing:.04em}
+.hero-actions{display:flex;flex-direction:column;align-items:flex-start;gap:.8rem}
+@media(min-width:600px){.hero-actions{align-items:flex-end}}
+.hero-btn{display:inline-block;background:var(--gold);color:var(--ink);padding:.95rem clamp(1.5rem,3vw,2.8rem);font-size:clamp(.48rem,1.4vw,.56rem);letter-spacing:.24em;text-transform:uppercase;font-weight:400;transition:background .3s}
+.hero-btn:hover{background:var(--gold-hi)}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.pill{font-size:clamp(.36rem,1.1vw,.44rem);letter-spacing:.18em;text-transform:uppercase;border:1px solid rgba(255,255,255,.1);padding:.32rem .8rem;color:rgba(237,232,223,.3)}
+.hero-dots{position:absolute;right:clamp(1rem,3vw,3rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.7rem;z-index:3}
+.h-dot{width:2px;height:16px;background:rgba(255,255,255,.12);cursor:pointer;transition:height .4s,background .4s}
+.h-dot.active{height:34px;background:var(--gold)}
+.scroll-hint{position:absolute;bottom:clamp(.8rem,2.5vw,2rem);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.35;z-index:3}
+.sh-line{width:1px;height:36px;background:var(--warm-dim);overflow:hidden;position:relative}
+.sh-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:shDrop 2s ease-in-out infinite}
+@keyframes shDrop{from{top:-100%}to{top:200%}}
+.sh-label{font-size:.38rem;letter-spacing:.38em;text-transform:uppercase;color:var(--warm-dim)}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--ink2);overflow:hidden;padding:1.1rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.marquee-track{display:flex;white-space:nowrap;animation:mq 40s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-item{display:inline-flex;align-items:center;gap:.8rem;padding:0 2rem;border-right:1px solid rgba(255,255,255,.05)}
+.mq-n{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,3vw,1.5rem);color:var(--gold);line-height:1;font-weight:300}
+.mq-t{font-size:clamp(.38rem,1.1vw,.48rem);letter-spacing:.3em;text-transform:uppercase;color:rgba(237,232,223,.22)}
+
+/* SECTION UTILS */
+.s{padding:clamp(4rem,10vw,10rem) clamp(1.2rem,5vw,5rem)}
+.s-dark{background:var(--ink2)}
+.s-label{font-size:clamp(.4rem,1.4vw,.48rem);letter-spacing:.48em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem}
+.s-label::before{content:'';width:20px;height:1px;background:var(--gold)}
+.s-h{font-family:var(--serif);font-weight:300;line-height:.95;font-size:clamp(2.2rem,5.5vw,4.8rem);letter-spacing:-.01em}
+.s-h em{font-style:italic;color:var(--gold)}
+.s-h.dark{color:var(--ink)}
+.s-h.dark em{color:var(--gold-lo)}
+.divider{width:40px;height:1px;background:rgba(184,145,74,.2);margin:1.8rem 0}
+
+/* STORY CARDS — MOBILE */
+.story-stack{display:flex;flex-direction:column;gap:3px}
+.story-card{position:relative;overflow:hidden;min-height:85vw}
+@media(min-width:500px){.story-card{min-height:55vw;max-height:65vh}}
+.story-card img{position:absolute;inset:0;transition:transform 8s ease}
+.story-card:hover img{transform:scale(1.04)}
+.sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,7,.88) 0%,rgba(12,10,7,.2) 55%,rgba(12,10,7,.1) 100%)}
+.sc-body{position:absolute;bottom:0;left:0;right:0;padding:clamp(1.4rem,5vw,2.8rem)}
+.sc-num{font-family:var(--serif);font-style:italic;font-size:clamp(2.5rem,7vw,4rem);color:rgba(255,255,255,.05);line-height:1;margin-bottom:-.4rem}
+.sc-title{font-family:var(--serif);font-weight:300;font-size:clamp(1.5rem,4vw,2.4rem);color:var(--warm);line-height:1.05;margin-bottom:.7rem}
+.sc-title em{font-style:italic;color:var(--gold-hi)}
+.sc-text{font-size:clamp(.6rem,1.9vw,.7rem);line-height:1.95;color:rgba(237,232,223,.5);max-width:480px;letter-spacing:.03em}
+
+/* STORY — DESKTOP STICKY */
+.story-sticky-wrap{display:none}
 @media(min-width:1024px){
-  .story-stack{
-    display:none;
-  }
-
-  .story-sticky-wrap{
-    display:block;
-    height:400vh;
-    position:relative;
-  }
-
-  .story-sticky-inner{
-    position:sticky;
-    top:0;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    align-items:stretch;
-  }
-
-  .story-track-h{
-    display:flex;
-    will-change:transform;
-  }
-
-  .story-panel-h{
-    flex-shrink:0;
-    width:100vw;
-    height:100vh;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .story-panel-h img{
-    position:absolute;
-    inset:0;
-  }
-
-  .sph-overlay{
-    position:absolute;
-    inset:0;
-  }
-
-  .sph-content{
-    position:relative;
-    z-index:2;
-    text-align:center;
-    max-width:680px;
-    padding:3rem;
-  }
-
-  .sph-num{
-    font-family:var(--serif);
-    font-style:italic;
-    font-size:8rem;
-    font-weight:300;
-    color:rgba(255,255,255,.04);
-    line-height:1;
-    margin-bottom:-1.5rem;
-  }
-
-  .sph-title{
-    font-family:var(--serif);
-    font-size:clamp(2.5rem,4vw,3.8rem);
-    font-weight:300;
-    color:var(--warm);
-    line-height:1.05;
-    margin-bottom:1.2rem;
-  }
-
-  .sph-title em{
-    font-style:italic;
-    color:var(--terra-hi);
-  }
-
-  .sph-text{
-    font-size:.72rem;
-    line-height:2;
-    color:rgba(240,235,226,.5);
-    max-width:480px;
-    margin:0 auto;
-    letter-spacing:.04em;
-  }
-
-  .sph-dots{
-    position:absolute;
-    bottom:2.5rem;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:.7rem;
-  }
-
-  .sph-dot{
-    width:28px;
-    height:2px;
-    background:rgba(255,255,255,.15);
-    transition:all .4s;
-  }
-
-  .sph-dot.active{
-    width:54px;
-    background:var(--terra);
-  }
+  .story-stack{display:none}
+  .story-sticky-wrap{display:block;height:400vh;position:relative}
+  .story-sticky-inner{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:stretch}
+  .story-track-h{display:flex;will-change:transform}
+  .story-panel-h{flex-shrink:0;width:100vw;height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .story-panel-h img{position:absolute;inset:0}
+  .sph-overlay{position:absolute;inset:0}
+  .sph-content{position:relative;z-index:2;text-align:center;max-width:700px;padding:3rem}
+  .sph-num{font-family:var(--serif);font-style:italic;font-size:9rem;font-weight:300;color:rgba(255,255,255,.04);line-height:1;margin-bottom:-1.5rem}
+  .sph-title{font-family:var(--serif);font-size:clamp(2.8rem,4.5vw,4.2rem);font-weight:300;color:var(--warm);line-height:1.02;margin-bottom:1.2rem}
+  .sph-title em{font-style:italic;color:var(--gold-hi)}
+  .sph-text{font-size:.7rem;line-height:2.1;color:rgba(237,232,223,.45);max-width:500px;margin:0 auto;letter-spacing:.04em}
+  .sph-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:.7rem}
+  .sph-dot{width:26px;height:2px;background:rgba(255,255,255,.12);transition:all .4s}
+  .sph-dot.active{width:52px;background:var(--gold)}
 }
 
-/* Gallery */
-.gallery-header{
-  padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,5rem) clamp(2rem,4vw,4rem);
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  flex-wrap:wrap;
-  gap:1.5rem;
-}
-
-.gal-link{
-  font-size:clamp(.5rem,1.5vw,.56rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--warm-dim);
-  border-bottom:1px solid rgba(255,255,255,.1);
-  padding-bottom:.25rem;
-  transition:color .3s,border-color .3s;
-}
-
-.gal-link:hover,
-.gal-link:active{
-  color:var(--terra);
-  border-color:var(--terra);
-}
-
-.gallery-mobile{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3px;
-}
-
-.gallery-mobile .gp{
-  aspect-ratio:1;
-  position:relative;
-  overflow:hidden;
-  opacity:0;
-  transform:translateY(24px) scale(.98);
-  transition:opacity .7s ease,transform .7s ease;
-}
-
-.gallery-mobile.in .gp{
-  opacity:1;
-  transform:none;
-}
-
-.gallery-mobile.in .gp:nth-child(2){transition-delay:.06s}
-.gallery-mobile.in .gp:nth-child(3){transition-delay:.12s}
-.gallery-mobile.in .gp:nth-child(4){transition-delay:.18s}
-.gallery-mobile.in .gp:nth-child(5){transition-delay:.24s}
-.gallery-mobile.in .gp:nth-child(6){transition-delay:.3s}
-
-.gallery-mobile .gp img{
-  transition:transform .7s ease;
-}
-
-.gallery-mobile .gp-cap{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:flex-end;
-  padding:1rem;
-  background:linear-gradient(to top,rgba(13,11,8,.72) 0%,transparent 58%);
-  opacity:1;
-  transition:opacity .4s;
-}
-
-.gp-name{
-  font-family:var(--serif);
-  font-size:.85rem;
-  font-style:italic;
-  color:var(--warm);
-}
-
-.gp-sub{
-  font-size:.42rem;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.55);
-  margin-top:.2rem;
-}
-
-.gallery-desktop{
-  display:none;
-}
-
-@media(min-width:600px){
-  .gallery-mobile{
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-@media(hover:hover) and (pointer:fine){
-  .gallery-mobile .gp:hover img{
-    transform:scale(1.07);
-  }
-}
-
+/* GALLERY */
+.gallery-header{padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,5rem) clamp(1.5rem,3.5vw,3.5rem);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem}
+.gal-link{font-size:clamp(.48rem,1.4vw,.54rem);letter-spacing:.22em;text-transform:uppercase;color:var(--warm-dim);border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:.25rem;transition:color .3s,border-color .3s}
+.gal-link:hover{color:var(--gold);border-color:var(--gold)}
+.gallery-mobile{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+@media(min-width:500px){.gallery-mobile{grid-template-columns:repeat(3,1fr)}}
+.gallery-mobile .gp{aspect-ratio:1;position:relative;overflow:hidden}
+.gallery-mobile .gp img{transition:transform .7s ease}
+.gallery-mobile .gp:hover img{transform:scale(1.07)}
+.gallery-mobile .gp-cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:.9rem;background:linear-gradient(to top,rgba(12,10,7,.75) 0%,transparent 55%);opacity:0;transition:opacity .4s}
+.gallery-mobile .gp:hover .gp-cap{opacity:1}
+.gp-name{font-family:var(--serif);font-size:.9rem;font-style:italic;color:var(--warm);font-weight:300}
+.gp-sub{font-size:.4rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(237,232,223,.45);margin-top:.15rem}
+.gallery-desktop{display:none}
 @media(min-width:1024px){
-  .gallery-mobile{
-    display:none;
-  }
-
-  .gallery-desktop{
-    display:grid;
-    grid-template-columns:repeat(12,1fr);
-    grid-auto-rows:80px;
-    gap:3px;
-  }
-
-  .gd{
-    overflow:hidden;
-    position:relative;
-  }
-
-  .gd img{
-    transition:transform .7s cubic-bezier(.23,1,.32,1),filter .5s;
-  }
-
-  .gd:hover img{
-    transform:scale(1.07);
-    filter:brightness(.65);
-  }
-
-  .gd-cap{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    padding:1.8rem;
-    background:linear-gradient(to top,rgba(13,11,8,.7) 0%,transparent 60%);
-    opacity:0;
-    transition:opacity .5s;
-  }
-
-  .gd:hover .gd-cap{
-    opacity:1;
-  }
-
-  .gd1{grid-column:1/6;grid-row:1/9}
-  .gd2{grid-column:6/10;grid-row:1/6}
-  .gd3{grid-column:10/13;grid-row:1/5}
-  .gd4{grid-column:6/9;grid-row:6/11}
-  .gd5{grid-column:9/13;grid-row:5/9}
-  .gd6{grid-column:1/4;grid-row:9/14}
-  .gd7{grid-column:4/9;grid-row:11/15}
-  .gd8{grid-column:9/13;grid-row:9/15}
+  .gallery-mobile{display:none}
+  .gallery-desktop{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:80px;gap:3px}
+  .gd{overflow:hidden;position:relative}
+  .gd img{transition:transform .8s cubic-bezier(.23,1,.32,1),filter .5s}
+  .gd:hover img{transform:scale(1.06);filter:brightness(.6)}
+  .gd-cap{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.8rem;background:linear-gradient(to top,rgba(12,10,7,.75) 0%,transparent 60%);opacity:0;transition:opacity .5s}
+  .gd:hover .gd-cap{opacity:1}
+  .gd1{grid-column:1/6;grid-row:1/9}.gd2{grid-column:6/10;grid-row:1/6}.gd3{grid-column:10/13;grid-row:1/5}
+  .gd4{grid-column:6/9;grid-row:6/11}.gd5{grid-column:9/13;grid-row:5/9}.gd6{grid-column:1/4;grid-row:9/14}
+  .gd7{grid-column:4/9;grid-row:11/15}.gd8{grid-column:9/13;grid-row:9/15}
 }
 
-/* Experience */
-.exp-mobile{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-}
+/* EXPERIENCE — MOBILE */
+.exp-mobile{display:flex;flex-direction:column;gap:2px}
+@media(min-width:1024px){.exp-mobile{display:none}}
+.ec-m{background:var(--ink3);padding:clamp(1.4rem,4vw,2.4rem);border-bottom:1px solid rgba(255,255,255,.04);position:relative;overflow:hidden;transition:background .4s}
+.ec-m::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.ec-m:hover,.ec-m:active{background:var(--ink4)}
+.ec-m:hover::after,.ec-m:active::after{transform:scaleX(1)}
+.ec-m-num{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,6vw,3.5rem);color:rgba(184,145,74,.08);line-height:1;margin-bottom:.7rem}
+.ec-m-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,3.5vw,1.5rem);color:var(--warm);margin-bottom:.55rem;font-weight:300}
+.ec-m-text{font-size:clamp(.6rem,1.8vw,.68rem);line-height:1.95;color:rgba(237,232,223,.38);letter-spacing:.03em}
+.ec-m-tag{display:inline-block;margin-top:.9rem;font-size:clamp(.38rem,1.1vw,.44rem);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,145,74,.22);padding:.28rem .75rem}
 
-.ec-m{
-  background:var(--ink3);
-  padding:clamp(1.5rem,4vw,2.5rem);
-  border-bottom:1px solid rgba(255,255,255,.05);
-  position:relative;
-  overflow:hidden;
-  transition:background .4s,opacity .75s ease,transform .75s ease;
-}
-
-.ec-m::after{
-  content:'';
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:2px;
-  background:var(--terra);
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .8s ease;
-}
-
-.ec-m.in::after{
-  transform:scaleX(1);
-}
-
-.ec-m:hover,
-.ec-m:active{
-  background:var(--ink4);
-}
-
-.ec-m-num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(2rem,6vw,3.5rem);
-  color:rgba(192,122,82,.1);
-  line-height:1;
-  margin-bottom:.8rem;
-}
-
-.ec-m-title{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(1.1rem,3.5vw,1.5rem);
-  color:var(--warm);
-  margin-bottom:.6rem;
-  font-weight:300;
-}
-
-.ec-m-text{
-  font-size:clamp(.58rem,1.8vw,.68rem);
-  line-height:1.9;
-  color:rgba(240,235,226,.4);
-  letter-spacing:.03em;
-}
-
-.ec-m-tag{
-  display:inline-block;
-  margin-top:1rem;
-  font-size:clamp(.4rem,1.2vw,.46rem);
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:var(--terra);
-  border:1px solid rgba(192,122,82,.25);
-  padding:.3rem .8rem;
-}
-
-.exp-desktop{
-  display:none;
-}
-
+/* EXPERIENCE — DESKTOP */
+.exp-desktop{display:none}
 @media(min-width:1024px){
-  .exp-mobile{
-    display:none;
-  }
-
-  .exp-desktop{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    min-height:100vh;
-  }
-
-  .exp-d-left{
-    background:var(--ink3);
-    padding:8rem 5rem;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    position:sticky;
-    top:0;
-    height:100vh;
-  }
-
-  .exp-d-right{
-    background:var(--ink2);
-  }
-
-  .exp-d-card{
-    min-height:100vh;
-    padding:6rem 4rem;
-    border-bottom:1px solid rgba(255,255,255,.04);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-    transition:background .4s;
-  }
-
-  .exp-d-card::after{
-    content:'';
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    height:2px;
-    background:var(--terra);
-    transform:scaleX(0);
-    transform-origin:left;
-    transition:transform .5s;
-  }
-
-  .exp-d-card:hover{
-    background:var(--ink4);
-  }
-
-  .exp-d-card:hover::after{
-    transform:scaleX(1);
-  }
-
-  .ed-num{
-    font-family:var(--serif);
-    font-style:italic;
-    font-size:5rem;
-    color:rgba(192,122,82,.1);
-    line-height:1;
-    margin-bottom:1.2rem;
-    transition:color .4s;
-  }
-
-  .exp-d-card:hover .ed-num{
-    color:rgba(192,122,82,.2);
-  }
-
-  .ed-title{
-    font-family:var(--serif);
-    font-size:1.6rem;
-    font-weight:300;
-    color:var(--warm);
-    margin-bottom:.8rem;
-    font-style:italic;
-    transition:color .3s;
-  }
-
-  .exp-d-card:hover .ed-title{
-    color:var(--terra-hi);
-  }
-
-  .ed-text{
-    font-size:.68rem;
-    line-height:2;
-    color:rgba(240,235,226,.4);
-    max-width:360px;
-  }
-
-  .ed-tag{
-    display:inline-block;
-    margin-top:1.2rem;
-    font-size:.44rem;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    color:var(--terra);
-    border:1px solid rgba(192,122,82,.25);
-    padding:.3rem .85rem;
-  }
-
-  .ed-arrow{
-    position:absolute;
-    bottom:2.5rem;
-    right:2.5rem;
-    font-size:1.3rem;
-    color:rgba(192,122,82,.15);
-    transition:transform .4s,color .4s;
-  }
-
-  .exp-d-card:hover .ed-arrow{
-    transform:translate(5px,-5px);
-    color:var(--terra);
-  }
-
-  .exp-d-img-wrap{
-    margin-top:2.5rem;
-    height:180px;
-    overflow:hidden;
-    position:relative;
-  }
-
-  #expDImg{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:opacity .4s ease;
-  }
-}
-
-/* Pricing */
-.pricing-header{
-  padding:clamp(4rem,8vw,8rem) clamp(1.2rem,5vw,5rem) clamp(2rem,4vw,4rem);
-  display:grid;
-  grid-template-columns:1fr;
-  gap:2rem;
-}
-
-.pricing-p{
-  font-size:clamp(.6rem,1.8vw,.72rem);
-  line-height:2;
-  color:var(--warm-dim);
-  letter-spacing:.03em;
-  border-top:1px solid rgba(255,255,255,.06);
-  padding-top:1.5rem;
-}
-
-.pricing-cards{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  margin:0 clamp(1.2rem,5vw,5rem) clamp(4rem,8vw,8rem);
-}
-
-.pc{
-  background:var(--ink2);
-  padding:clamp(2rem,5vw,4rem) clamp(1.5rem,4vw,3rem);
-  position:relative;
-  overflow:hidden;
-  transition:background .5s,opacity .75s ease,transform .75s ease;
-}
-
-.pc::after{
-  content:'';
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:2px;
-  background:var(--terra);
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .8s ease;
-}
-
-.pc.in::after,
-.pc:hover::after{
-  transform:scaleX(1);
-}
-
-.pc:hover,
-.pc:active{
-  background:var(--ink3);
-}
-
-.pc.featured{
-  background:var(--terra);
-}
-
-.pc.featured::after{
-  display:none;
-}
-
-.pc.featured:hover,
-.pc.featured:active{
-  background:var(--terra-hi);
-}
-
-.pc-season{
-  font-size:clamp(.4rem,1.2vw,.48rem);
-  letter-spacing:.4em;
-  text-transform:uppercase;
-  color:var(--warm-dim);
-  margin-bottom:2rem;
-}
-
-.pc.featured .pc-season{
-  color:rgba(13,11,8,.55);
-}
-
-.pc-price{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(2.5rem,6vw,3.5rem);
-  color:var(--warm);
-  line-height:1;
-  margin-bottom:.4rem;
-}
-
-.pc.featured .pc-price{
-  color:var(--ink);
-}
-
-.pc-unit{
-  font-size:clamp(.4rem,1.2vw,.5rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.3);
-  margin-bottom:2rem;
-}
-
-.pc.featured .pc-unit{
-  color:rgba(13,11,8,.4);
-}
-
-.pc-list{
-  list-style:none;
-  display:flex;
-  flex-direction:column;
-  gap:.7rem;
-  margin-bottom:2.5rem;
-}
-
-.pc-list li{
-  font-size:clamp(.56rem,1.6vw,.62rem);
-  color:rgba(240,235,226,.4);
-  display:flex;
-  gap:.6rem;
-  align-items:baseline;
-  line-height:1.5;
-}
-
-.pc.featured .pc-list li{
-  color:rgba(13,11,8,.5);
-}
-
-.pc-list li::before{
-  content:'-';
-  color:rgba(192,122,82,.5);
-  font-size:.5rem;
-  flex-shrink:0;
-}
-
-.pc.featured .pc-list li::before{
-  color:rgba(13,11,8,.3);
-}
-
-.pc-cta{
-  font-size:clamp(.48rem,1.4vw,.52rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--terra);
-  border-bottom:1px solid rgba(192,122,82,.3);
-  padding-bottom:.2rem;
-  display:inline-block;
-  transition:color .3s,border-color .3s;
-}
-
-.pc-cta:hover,
-.pc-cta:active{
-  color:var(--terra-hi);
-  border-color:var(--terra-hi);
-}
-
-.pc.featured .pc-cta{
-  color:var(--ink);
-  border-color:rgba(13,11,8,.3);
-}
-
-@media(min-width:768px){
-  .pricing-header{
-    grid-template-columns:1fr 1fr;
-    gap:4rem;
-    align-items:end;
-  }
-
-  .pricing-cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-  }
-}
-
-/* Testimonials */
-.testi-outer{
-  position:relative;
-  min-height:90vh;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-}
-
-.testi-bg-img{
-  position:absolute;
-  inset:0;
-  background-image:url('[images.unsplash.com](https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=85&fit=crop)');
-  background-size:cover;
-  background-position:center 30%;
-}
-
-.testi-scrim{
-  position:absolute;
-  inset:0;
-  background:rgba(13,11,8,.83);
-}
-
-.testi-inner{
-  position:relative;
-  z-index:2;
-  width:100%;
-  padding:clamp(3rem,7vw,7rem) clamp(1.2rem,5vw,5rem);
-  display:grid;
-  grid-template-columns:1fr;
-  gap:3rem;
-}
-
-.testi-left-h{
-  font-family:var(--serif);
-  font-weight:300;
-  font-size:clamp(2rem,5vw,4rem);
-  color:var(--warm);
-  line-height:1.05;
-}
-
-.testi-left-h em{
-  display:block;
-  font-style:italic;
-  color:var(--terra-hi);
-}
-
-.testi-score{
-  margin-top:2rem;
-}
-
-.ts-n{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(3rem,8vw,5rem);
-  color:var(--terra);
-  line-height:1;
-}
-
-.ts-stars{
-  color:var(--terra);
-  font-size:.65rem;
-  letter-spacing:.12em;
-  margin:.4rem 0;
-}
-
-.ts-label{
-  font-size:clamp(.42rem,1.3vw,.48rem);
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.25);
-}
-
-.testi-slider-wrap{
-  overflow:hidden;
-}
-
-.testi-track{
-  display:flex;
-  transition:transform .8s cubic-bezier(.23,1,.32,1);
-}
-
-.testi-item{
-  flex-shrink:0;
-  width:100%;
-  padding:clamp(1.5rem,4vw,3rem);
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  position:relative;
-}
-
-.testi-item::before{
-  content:'"';
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:5rem;
-  color:rgba(192,122,82,.1);
-  line-height:1;
-  position:absolute;
-  top:.5rem;
-  right:1.5rem;
-}
-
-.ti-text{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(.85rem,2.5vw,1.1rem);
-  color:rgba(240,235,226,.7);
-  line-height:1.8;
-  margin-bottom:2rem;
-}
-
-.ti-author{
-  display:flex;
-  align-items:center;
-  gap:1rem;
-}
-
-.ti-av{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  flex-shrink:0;
-  background:rgba(192,122,82,.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:1.1rem;
-  color:var(--terra);
-}
-
-.ti-name{
-  font-size:clamp(.55rem,1.6vw,.62rem);
-  color:var(--warm);
-  margin-bottom:.2rem;
-  font-weight:400;
-}
-
-.ti-meta{
-  font-size:clamp(.45rem,1.3vw,.5rem);
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.28);
-}
-
-.testi-btns{
-  display:flex;
-  gap:.8rem;
-  margin-top:1.5rem;
-  justify-content:flex-end;
-}
-
-.t-btn{
-  width:42px;
-  height:42px;
-  border:1px solid rgba(255,255,255,.1);
-  background:transparent;
-  color:var(--warm-dim);
-  font-size:1rem;
-  cursor:pointer;
-  transition:all .3s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.t-btn:hover,
-.t-btn:active{
-  background:var(--terra);
-  border-color:var(--terra);
-  color:white;
-}
-
-@media(min-width:768px){
-  .testi-inner{
-    grid-template-columns:1fr 2fr;
-    gap:6rem;
-    align-items:center;
-  }
-}
-
-/* Booking */
-.booking-outer{
-  background:var(--stone);
-  position:relative;
-  overflow:hidden;
-  padding:clamp(4rem,10vw,10rem) clamp(1.2rem,5vw,5rem);
-}
-
-.booking-bg-word{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(6rem,20vw,18vw);
-  color:rgba(192,122,82,.04);
-  white-space:nowrap;
-  pointer-events:none;
-  line-height:1;
-}
-
-.booking-grid{
-  position:relative;
-  z-index:2;
-  display:grid;
-  grid-template-columns:1fr;
-  gap:3rem;
-}
-
-.booking-text .s-label{
-  color:var(--terra-lo);
-}
-
-.booking-text .s-label::before{
-  background:var(--terra-lo);
-}
-
-.booking-text .s-h em{
-  color:var(--terra-lo);
-}
-
-.booking-desc{
-  font-size:clamp(.62rem,1.8vw,.72rem);
-  line-height:2;
-  color:rgba(26,21,16,.5);
-  margin-top:1.2rem;
-  letter-spacing:.03em;
-}
-
-.booking-inc{
-  display:flex;
-  flex-direction:column;
-  gap:.55rem;
-  margin-top:2rem;
-}
-
-.bi{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-  font-size:clamp(.56rem,1.6vw,.62rem);
-  color:rgba(26,21,16,.48);
-}
-
-.bi-c{
-  width:15px;
-  height:15px;
-  border:1px solid rgba(192,122,74,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:.5rem;
-  color:var(--terra);
-  flex-shrink:0;
-}
-
-.booking-form{
-  background:var(--ink);
-  padding:clamp(2rem,5vw,3.5rem);
-}
-
-.bf-title{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(1.1rem,3vw,1.4rem);
-  color:var(--warm);
-  margin-bottom:.4rem;
-}
-
-.bf-sub{
-  font-size:clamp(.42rem,1.3vw,.5rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--warm-dim);
-  margin-bottom:2rem;
-}
-
-.bf-row{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:.8rem;
-  margin-bottom:.8rem;
-}
-
-.bf-full{
-  margin-bottom:.8rem;
-}
-
-.bf-in{
-  width:100%;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  padding:.95rem 1rem;
-  color:var(--warm);
-  font-family:var(--sans);
-  font-size:16px;
-  letter-spacing:.04em;
-  outline:none;
-  transition:border-color .3s;
-  font-weight:300;
-  border-radius:0;
-}
-
-.bf-in::placeholder{
-  color:rgba(240,235,226,.2);
-}
-
-.bf-in:focus{
-  border-color:rgba(192,122,82,.5);
-}
-
-select.bf-in{
-  -webkit-appearance:none;
-  appearance:none;
-  cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='[w3.org](http://www.w3.org/2000/svg)' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c07a52' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:right .9rem center;
-  background-color:rgba(255,255,255,.04);
-}
-
-select.bf-in option{
-  background:var(--ink);
-}
-
-.bf-submit{
-  width:100%;
-  background:var(--terra);
-  color:var(--ink);
-  border:none;
-  padding:1rem;
-  font-family:var(--sans);
-  font-size:clamp(.54rem,1.6vw,.6rem);
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  font-weight:400;
-  cursor:pointer;
-  transition:background .3s;
-  margin-top:.3rem;
-}
-
-.bf-submit:hover,
-.bf-submit:active{
-  background:var(--terra-hi);
-}
-
-.bf-note{
-  text-align:center;
-  margin-top:.8rem;
-  font-size:clamp(.42rem,1.2vw,.48rem);
-  letter-spacing:.1em;
-  color:rgba(240,235,226,.18);
-}
-
-@media(min-width:480px){
-  .bf-row{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(min-width:768px){
-  .booking-grid{
-    grid-template-columns:1fr 1fr;
-    gap:6rem;
-    align-items:center;
-  }
-
-  .bf-in{
-    font-size:.62rem;
-    letter-spacing:.07em;
-  }
-}
-
-/* Footer */
-footer{
-  background:var(--ink);
-  border-top:1px solid rgba(255,255,255,.04);
-  padding:clamp(3rem,7vw,5rem) clamp(1.2rem,5vw,5rem) clamp(2rem,4vw,3rem);
-}
-
-.footer-top{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:2.5rem;
-  padding-bottom:3rem;
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-.f-logo{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:clamp(1.1rem,3vw,1.5rem);
-  color:var(--warm);
-  margin-bottom:.3rem;
-}
-
-.f-logo-sub{
-  font-size:clamp(.38rem,1.2vw,.43rem);
-  letter-spacing:.45em;
-  text-transform:uppercase;
-  color:var(--terra);
-  margin-bottom:1rem;
-}
-
-.f-desc{
-  font-size:clamp(.58rem,1.6vw,.62rem);
-  line-height:1.9;
-  color:rgba(240,235,226,.22);
-  max-width:260px;
-}
-
-.f-col h4{
-  font-size:clamp(.42rem,1.2vw,.46rem);
-  letter-spacing:.38em;
-  text-transform:uppercase;
-  color:var(--terra);
-  margin-bottom:1.2rem;
-  font-weight:300;
-}
-
-.f-col ul{
-  list-style:none;
-  display:flex;
-  flex-direction:column;
-  gap:.75rem;
-}
-
-.f-col a{
-  font-size:clamp(.56rem,1.6vw,.6rem);
-  color:rgba(240,235,226,.22);
-  transition:color .3s;
-}
-
-.f-col a:hover,
-.f-col a:active{
-  color:rgba(240,235,226,.65);
-}
-
-.footer-bottom{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  padding-top:2rem;
-}
-
-.f-legal{
-  font-size:clamp(.44rem,1.3vw,.48rem);
-  color:rgba(240,235,226,.15);
-}
-
-.f-soc{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1.5rem;
-}
-
-.f-soc a{
-  font-size:clamp(.44rem,1.3vw,.48rem);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:rgba(240,235,226,.2);
-  transition:color .3s;
-}
-
-.f-soc a:hover,
-.f-soc a:active{
-  color:var(--terra);
-}
-
-@media(min-width:600px){
-  .footer-top{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .footer-bottom{
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-  }
-}
-
-@media(min-width:900px){
-  .footer-top{
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:4rem;
-  }
-}
-
-/* Reduced motion */
-@media(prefers-reduced-motion:reduce){
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-  }
-
-  .reveal,
-  .story-card,
-  .gallery-mobile .gp{
-    opacity:1!important;
-    transform:none!important;
-  }
-
-  #loader{
-    display:none;
-  }
+  .exp-desktop{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+  .exp-d-left{background:var(--ink3);padding:8rem 5rem;display:flex;flex-direction:column;justify-content:center;position:sticky;top:0;height:100vh}
+  .exp-d-right{background:var(--ink2)}
+  .exp-d-card{min-height:100vh;padding:6rem 4rem;border-bottom:1px solid rgba(255,255,255,.04);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:background .4s}
+  .exp-d-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+  .exp-d-card:hover{background:var(--ink4)}
+  .exp-d-card:hover::after{transform:scaleX(1)}
+  .ed-num{font-family:var(--serif);font-style:italic;font-size:5rem;color:rgba(184,145,74,.08);line-height:1;margin-bottom:1.2rem;transition:color .4s}
+  .exp-d-card:hover .ed-num{color:rgba(184,145,74,.18)}
+  .ed-title{font-family:var(--serif);font-size:1.65rem;font-weight:300;color:var(--warm);margin-bottom:.8rem;font-style:italic;transition:color .3s}
+  .exp-d-card:hover .ed-title{color:var(--gold-hi)}
+  .ed-text{font-size:.68rem;line-height:2;color:rgba(237,232,223,.38);max-width:360px}
+  .ed-tag{display:inline-block;margin-top:1.2rem;font-size:.42rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,145,74,.22);padding:.28rem .8rem}
+  .ed-arrow{position:absolute;bottom:2.5rem;right:2.5rem;font-size:1.3rem;color:rgba(184,145,74,.12);transition:transform .4s,color .4s}
+  .exp-d-card:hover .ed-arrow{transform:translate(5px,-5px);color:var(--gold)}
+  .exp-d-img-wrap{margin-top:2.5rem;height:180px;overflow:hidden;position:relative}
+  #expDImg{width:100%;height:100%;object-fit:cover;transition:opacity .4s ease}
+}
+
+/* PRICING */
+.pricing-header{padding:clamp(4rem,8vw,8rem) clamp(1.2rem,5vw,5rem) clamp(2rem,4vw,4rem);display:grid;grid-template-columns:1fr;gap:2rem}
+@media(min-width:768px){.pricing-header{grid-template-columns:1fr 1fr;gap:4rem;align-items:end}}
+.pricing-p{font-size:clamp(.6rem,1.7vw,.7rem);line-height:2.1;color:var(--warm-dim);letter-spacing:.04em;border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem}
+.pricing-cards{display:flex;flex-direction:column;gap:2px;margin:0 clamp(1.2rem,5vw,5rem) clamp(4rem,8vw,8rem)}
+@media(min-width:768px){.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);margin:0 clamp(1.2rem,5vw,5rem) clamp(4rem,8vw,8rem)}}
+.pc{background:var(--ink2);padding:clamp(2rem,5vw,4rem) clamp(1.4rem,4vw,3rem);position:relative;overflow:hidden;transition:background .5s}
+.pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.pc:hover{background:var(--ink3)}
+.pc:hover::after{transform:scaleX(1)}
+.pc.featured{background:var(--gold)}
+.pc.featured::after{display:none}
+.pc.featured:hover{background:var(--gold-hi)}
+.pc-season{font-size:clamp(.38rem,1.1vw,.46rem);letter-spacing:.42em;text-transform:uppercase;color:var(--warm-dim);margin-bottom:2rem}
+.pc.featured .pc-season{color:rgba(12,10,7,.5)}
+.pc-price{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(2.5rem,6vw,3.5rem);color:var(--warm);line-height:1;margin-bottom:.35rem}
+.pc.featured .pc-price{color:var(--ink)}
+.pc-unit{font-size:clamp(.38rem,1.1vw,.48rem);letter-spacing:.22em;text-transform:uppercase;color:rgba(237,232,223,.28);margin-bottom:2rem}
+.pc.featured .pc-unit{color:rgba(12,10,7,.38)}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2.5rem}
+.pc-list li{font-size:clamp(.55rem,1.5vw,.62rem);color:rgba(237,232,223,.38);display:flex;gap:.55rem;align-items:baseline;line-height:1.5}
+.pc.featured .pc-list li{color:rgba(12,10,7,.48)}
+.pc-list li::before{content:'—';color:rgba(184,145,74,.45);font-size:.48rem;flex-shrink:0}
+.pc.featured .pc-list li::before{color:rgba(12,10,7,.25)}
+.pc-cta{font-size:clamp(.46rem,1.3vw,.5rem);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(184,145,74,.25);padding-bottom:.2rem;display:inline-block;transition:color .3s,border-color .3s}
+.pc-cta:hover{color:var(--gold-hi);border-color:var(--gold-hi)}
+.pc.featured .pc-cta{color:var(--ink);border-color:rgba(12,10,7,.25)}
+
+/* TESTIMONIALS */
+.testi-outer{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden}
+.testi-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=85&fit=crop');background-size:cover;background-position:center 40%}
+.testi-scrim{position:absolute;inset:0;background:rgba(12,10,7,.85)}
+.testi-inner{position:relative;z-index:2;width:100%;padding:clamp(3rem,7vw,7rem) clamp(1.2rem,5vw,5rem);display:grid;grid-template-columns:1fr;gap:3rem}
+@media(min-width:768px){.testi-inner{grid-template-columns:1fr 2fr;gap:6rem;align-items:center}}
+.testi-left-h{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,5vw,4rem);color:var(--warm);line-height:1.05}
+.testi-left-h em{display:block;font-style:italic;color:var(--gold-hi)}
+.testi-score{margin-top:2rem}
+.ts-n{font-family:var(--serif);font-style:italic;font-size:clamp(3rem,8vw,5rem);color:var(--gold);line-height:1;font-weight:300}
+.ts-stars{color:var(--gold);font-size:.62rem;letter-spacing:.14em;margin:.35rem 0}
+.ts-label{font-size:clamp(.4rem,1.2vw,.46rem);letter-spacing:.3em;text-transform:uppercase;color:rgba(237,232,223,.22)}
+.testi-slider-wrap{overflow:hidden}
+.testi-track{display:flex;transition:transform .85s cubic-bezier(.23,1,.32,1)}
+.testi-item{flex-shrink:0;width:100%;padding:clamp(1.5rem,4vw,3rem);background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);position:relative}
+.testi-item::before{content:'\201C';font-family:var(--serif);font-style:italic;font-size:5rem;color:rgba(184,145,74,.1);line-height:1;position:absolute;top:.5rem;right:1.5rem}
+.ti-text{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(.88rem,2.5vw,1.1rem);color:rgba(237,232,223,.68);line-height:1.85;margin-bottom:2rem}
+.ti-author{display:flex;align-items:center;gap:1rem}
+.ti-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;background:rgba(184,145,74,.12);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold)}
+.ti-name{font-size:clamp(.54rem,1.5vw,.6rem);color:var(--warm);margin-bottom:.2rem;font-weight:400}
+.ti-meta{font-size:clamp(.43rem,1.2vw,.48rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(237,232,223,.25)}
+.testi-btns{display:flex;gap:.8rem;margin-top:1.5rem;justify-content:flex-end}
+.t-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--warm-dim);font-size:1rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.t-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+
+/* BOOKING */
+.booking-outer{background:var(--stone);position:relative;overflow:hidden;padding:clamp(4rem,10vw,10rem) clamp(1.2rem,5vw,5rem)}
+.booking-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(6rem,20vw,18vw);color:rgba(184,145,74,.04);white-space:nowrap;pointer-events:none;line-height:1}
+.booking-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr;gap:3rem}
+@media(min-width:768px){.booking-grid{grid-template-columns:1fr 1fr;gap:6rem;align-items:center}}
+.booking-text .s-label{color:var(--gold-lo)}
+.booking-text .s-label::before{background:var(--gold-lo)}
+.booking-text .s-h em{color:var(--gold-lo)}
+.booking-desc{font-size:clamp(.62rem,1.8vw,.7rem);line-height:2.1;color:rgba(26,21,16,.48);margin-top:1.2rem;letter-spacing:.04em}
+.booking-inc{display:flex;flex-direction:column;gap:.5rem;margin-top:1.8rem}
+.bi{display:flex;align-items:center;gap:.7rem;font-size:clamp(.56rem,1.5vw,.62rem);color:rgba(26,21,16,.45)}
+.bi-c{width:14px;height:14px;border:1px solid rgba(184,145,74,.35);display:flex;align-items:center;justify-content:center;font-size:.45rem;color:var(--gold);flex-shrink:0}
+.booking-form{background:var(--ink);padding:clamp(2rem,5vw,3.5rem)}
+.bf-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,3vw,1.4rem);color:var(--warm);margin-bottom:.35rem;font-weight:300}
+.bf-sub{font-size:clamp(.4rem,1.2vw,.48rem);letter-spacing:.22em;text-transform:uppercase;color:var(--warm-dim);margin-bottom:1.8rem}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.7rem}
+.bf-full{margin-bottom:.7rem}
+.bf-in{width:100%;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);padding:.88rem 1rem;color:var(--warm);font-family:var(--sans);font-size:clamp(.56rem,1.5vw,.62rem);letter-spacing:.07em;outline:none;transition:border-color .3s;font-weight:300}
+.bf-in::placeholder{color:rgba(237,232,223,.18)}
+.bf-in:focus{border-color:rgba(184,145,74,.45)}
+select.bf-in{-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23b8914a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center;background-color:rgba(255,255,255,.035)}
+select.bf-in option{background:var(--ink)}
+.bf-submit{width:100%;background:var(--gold);color:var(--ink);border:none;padding:1rem;font-family:var(--sans);font-size:clamp(.52rem,1.5vw,.58rem);letter-spacing:.28em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:background .3s;margin-top:.3rem}
+.bf-submit:hover{background:var(--gold-hi)}
+.bf-note{text-align:center;margin-top:.75rem;font-size:clamp(.4rem,1.1vw,.46rem);letter-spacing:.1em;color:rgba(237,232,223,.15)}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:clamp(3rem,7vw,5rem) clamp(1.2rem,5vw,5rem) clamp(2rem,4vw,3rem)}
+.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.05)}
+@media(min-width:900px){.footer-top{grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem}}
+.f-logo{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--warm);margin-bottom:.25rem;font-weight:300}
+.f-logo-sub{font-size:clamp(.36rem,1.1vw,.42rem);letter-spacing:.48em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.f-desc{font-size:clamp(.58rem,1.5vw,.62rem);line-height:1.95;color:rgba(237,232,223,.2);max-width:260px}
+.f-col h4{font-size:clamp(.4rem,1.1vw,.44rem);letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:300}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.f-col a{font-size:clamp(.55rem,1.5vw,.6rem);color:rgba(237,232,223,.2);transition:color .3s}
+.f-col a:hover{color:rgba(237,232,223,.6)}
+.footer-bottom{display:flex;flex-direction:column;gap:1rem;padding-top:2rem}
+@media(min-width:600px){.footer-bottom{flex-direction:row;justify-content:space-between;align-items:center}}
+.f-legal{font-size:clamp(.42rem,1.2vw,.46rem);color:rgba(237,232,223,.12)}
+.f-soc{display:flex;flex-wrap:wrap;gap:1.5rem}
+.f-soc a{font-size:clamp(.42rem,1.2vw,.46rem);letter-spacing:.22em;text-transform:uppercase;color:rgba(237,232,223,.18);transition:color .3s}
+.f-soc a:hover{color:var(--gold)}
+.f-soc a.kosko{color:var(--gold)}
+.f-soc a.kosko:hover{color:var(--warm)}
+
+/* REVEAL — works on both mobile and desktop */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.reveal.r-l{transform:translateX(-28px)}
+.reveal.r-r{transform:translateX(28px)}
+.reveal.r-s{transform:scale(.97)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}
+.reveal.d2{transition-delay:.22s}
+.reveal.d3{transition-delay:.34s}
+
+@media(hover:none){
+  .hero-btn:active{background:var(--gold-hi)}
+  .nav-cta:active{background:var(--gold-hi)}
+  .bf-submit:active{background:var(--gold-hi)}
+  .pc:active{background:var(--ink3)}
+  .t-btn:active{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .ec-m:active{background:var(--ink4)}
 }
 </style>
 </head>
-
 <body>
 
 <div id="loader">
   <div class="ld-logo">Villa Solaris</div>
-  <div class="ld-sub">Private Estate
+  <div class="ld-sub">Private Estate · Santorini</div>
+  <div class="ld-bar-wrap"><div class="ld-bar"></div></div>
+</div>
 
-  
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<nav id="nav">
+  <div class="nav-logo">
+    <span>Private Estate</span>
+    Villa Solaris
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">The Villa</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#pricing">Rates</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta" id="navCta">Reserve Now</a>
+  <button class="nav-burger" id="burger" aria-label="Menu">
+    <div class="nb-line" id="bl1"></div>
+    <div class="nb-line" id="bl2"></div>
+    <div class="nb-line" id="bl3"></div>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a class="mm-link" href="#about"      onclick="closeMM()">The Villa</a>
+  <a class="mm-link" href="#gallery"    onclick="closeMM()">Gallery</a>
+  <a class="mm-link" href="#experience" onclick="closeMM()">Experience</a>
+  <a class="mm-link" href="#pricing"    onclick="closeMM()">Rates</a>
+  <a class="mm-link" href="#booking"    onclick="closeMM()">Book</a>
+  <a class="mm-cta"  href="#booking"    onclick="closeMM()">Reserve Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-slide active">
+    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1800&q=85&fit=crop" alt="Villa infinity pool"/>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800&q=85&fit=crop" alt="Pool at sunset"/>
+  </div>
+  <div class="hero-slide">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1800&q=85&fit=crop" alt="Infinity pool view"/>
+  </div>
+  <div class="hero-grad"></div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">Santorini, Greece &nbsp;·&nbsp; Clifftop Private Estate</div>
+    <h1 class="hero-h1">
+      <span class="h1-line">Where the</span>
+      <span class="h1-line">horizon ends,</span>
+      <span class="h1-line">yours begins.</span>
+    </h1>
+    <div class="hero-footer">
+      <p class="hero-desc">Perched 260 metres above the Aegean. Five bedrooms, an infinity pool, and a silence you will carry home long after you leave.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="hero-btn">Check Availability</a>
+        <div class="hero-pills">
+          <span class="pill">5 Bedrooms</span>
+          <span class="pill">10 Guests</span>
+          <span class="pill">Private Pool</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="h-dot active"></div>
+    <div class="h-dot"></div>
+    <div class="h-dot"></div>
+  </div>
+  <div class="scroll-hint">
+    <div class="sh-line"></div>
+    <span class="sh-label">Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="mq-item"><span class="mq-n">580m²</span><span class="mq-t">Private Estate</span></div>
+    <div class="mq-item"><span class="mq-n">5</span><span class="mq-t">King Bedrooms</span></div>
+    <div class="mq-item"><span class="mq-n">4.97</span><span class="mq-t">Guest Score</span></div>
+    <div class="mq-item"><span class="mq-n">260m</span><span class="mq-t">Above the Aegean</span></div>
+    <div class="mq-item"><span class="mq-n">148</span><span class="mq-t">Reviews</span></div>
+    <div class="mq-item"><span class="mq-n">24/7</span><span class="mq-t">Concierge</span></div>
+    <div class="mq-item"><span class="mq-n">10</span><span class="mq-t">Max Guests</span></div>
+    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Pool View</span></div>
+    <div class="mq-item"><span class="mq-n">580m²</span><span class="mq-t">Private Estate</span></div>
+    <div class="mq-item"><span class="mq-n">5</span><span class="mq-t">King Bedrooms</span></div>
+    <div class="mq-item"><span class="mq-n">4.97</span><span class="mq-t">Guest Score</span></div>
+    <div class="mq-item"><span class="mq-n">260m</span><span class="mq-t">Above the Aegean</span></div>
+    <div class="mq-item"><span class="mq-n">148</span><span class="mq-t">Reviews</span></div>
+    <div class="mq-item"><span class="mq-n">24/7</span><span class="mq-t">Concierge</span></div>
+    <div class="mq-item"><span class="mq-n">10</span><span class="mq-t">Max Guests</span></div>
+    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Pool View</span></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="about" style="background:var(--ink)">
+  <!-- MOBILE: vertical image cards -->
+  <div class="story-stack">
+    <div class="story-card">
+      <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1000&q=85&fit=crop" alt="Villa architecture"/>
+      <div class="sc-overlay"></div>
+      <div class="sc-body">
+        <div class="sc-num">01</div>
+        <h2 class="sc-title">Built into <em>the cliff itself.</em></h2>
+        <p class="sc-text">Villa Solaris follows the ancient Cycladic tradition — curved whitewashed walls, volcanic stone floors, and an architecture that belongs to its landscape.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1000&q=85&fit=crop" alt="Infinity pool"/>
+      <div class="sc-overlay"></div>
+      <div class="sc-body">
+        <div class="sc-num">02</div>
+        <h2 class="sc-title">A pool that <em>touches the sky.</em></h2>
+        <p class="sc-text">The 22-metre infinity pool appears to dissolve into the Aegean horizon. At sunrise it turns copper. At dusk, deep violet. No photograph ever quite captures it.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1000&q=85&fit=crop" alt="Suite interior"/>
+      <div class="sc-overlay"></div>
+      <div class="sc-body">
+        <div class="sc-num">03</div>
+        <h2 class="sc-title">Five rooms. <em>Five worlds.</em></h2>
+        <p class="sc-text">Each suite is individually designed with its own caldera view. Linen pressed each morning. Flowers chosen fresh from the island market. Everything considered.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1000&q=85&fit=crop" alt="Wellness"/>
+      <div class="sc-overlay"></div>
+      <div class="sc-body">
+        <div class="sc-num">04</div>
+        <h2 class="sc-title">Restore. <em>Completely.</em></h2>
+        <p class="sc-text">The wellness sanctuary offers deep-tissue massage, a steam room, and a yoga deck that opens to the caldera at dawn. Arranged entirely to your schedule.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESKTOP: sticky horizontal scroll -->
+  <div class="story-sticky-wrap" id="storyOuter">
+    <div class="story-sticky-inner">
+      <div class="story-track-h" id="storyTrackH">
+        <div class="story-panel-h">
+          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1800&q=85&fit=crop" alt="Villa"/>
+          <div class="sph-overlay" style="background:linear-gradient(135deg,rgba(12,10,7,.72) 0%,rgba(12,10,7,.28) 100%)"></div>
+          <div class="sph-content">
+            <div class="sph-num">01</div>
+            <h2 class="sph-title">Built into <em>the cliff itself.</em></h2>
+            <p class="sph-text">Villa Solaris follows the ancient Cycladic tradition — curved whitewashed walls, volcanic stone floors, architecture that belongs to its landscape rather than imposing upon it.</p>
+          </div>
+        </div>
+        <div class="story-panel-h">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800&q=85&fit=crop" alt="Pool"/>
+          <div class="sph-overlay" style="background:rgba(12,10,7,.5)"></div>
+          <div class="sph-content">
+            <div class="sph-num">02</div>
+            <h2 class="sph-title">A pool that <em>touches the sky.</em></h2>
+            <p class="sph-text">The 22-metre infinity pool appears to dissolve into the Aegean horizon. At sunrise it turns the colour of copper. At dusk, deep violet. You have to be there.</p>
+          </div>
+        </div>
+        <div class="story-panel-h">
+          <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1800&q=85&fit=crop" alt="Suite"/>
+          <div class="sph-overlay" style="background:rgba(12,10,7,.52)"></div>
+          <div class="sph-content">
+            <div class="sph-num">03</div>
+            <h2 class="sph-title">Five rooms. <em>Five worlds.</em></h2>
+            <p class="sph-text">Each suite individually designed. Each one with its own caldera view. Linen sheets pressed each morning. Flowers from the island market. Everything considered.</p>
+          </div>
+        </div>
+        <div class="story-panel-h">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1800&q=85&fit=crop" alt="Wellness"/>
+          <div class="sph-overlay" style="background:linear-gradient(to top,rgba(12,10,7,.72),rgba(12,10,7,.28))"></div>
+          <div class="sph-content">
+            <div class="sph-num">04</div>
+            <h2 class="sph-title">Restore. <em>Completely.</em></h2>
+            <p class="sph-text">The wellness sanctuary offers deep-tissue massage, steam room, and a yoga deck that opens to the caldera at dawn. Your concierge arranges everything.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sph-dots" id="sphDots">
+        <div class="sph-dot active"></div>
+        <div class="sph-dot"></div>
+        <div class="sph-dot"></div>
+        <div class="sph-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div id="gallery" style="background:var(--ink)">
+  <div class="gallery-header">
+    <div>
+      <div class="s-label reveal">The Gallery</div>
+      <h2 class="s-h reveal d1">Every corner,<br>a <em>photograph.</em></h2>
+    </div>
+    <a href="#booking" class="gal-link reveal d2">Request full tour →</a>
+  </div>
+  <div class="gallery-mobile reveal r-s">
+    <div class="gp"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=85&fit=crop" alt="Pool"/><div class="gp-cap"><div><div class="gp-name">The Infinity Pool</div><div class="gp-sub">Caldera edge</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=85&fit=crop" alt="Resort"/><div class="gp-cap"><div><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=85&fit=crop" alt="Room"/><div class="gp-cap"><div><div class="gp-name">Caldera Suite</div><div class="gp-sub">Master bedroom</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=85&fit=crop" alt="Morning"/><div class="gp-cap"><div><div class="gp-name">Morning Light</div><div class="gp-sub">Pool at sunrise</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=85&fit=crop" alt="Spa"/><div class="gp-cap"><div><div class="gp-name">Wellness Spa</div><div class="gp-sub">Private sanctuary</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=85&fit=crop" alt="Dining"/><div class="gp-cap"><div><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div></div>
+  </div>
+  <div class="gallery-desktop">
+    <div class="gd gd1"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=900&q=85&fit=crop" alt="Pool"/><div class="gd-cap"><div class="gp-name">The Infinity Pool</div><div class="gp-sub">22 metres · Caldera edge</div></div></div>
+    <div class="gd gd2"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85&fit=crop" alt="Resort"/><div class="gd-cap"><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div>
+    <div class="gd gd3"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=85&fit=crop" alt="Room"/><div class="gd-cap"><div class="gp-name">Caldera Suite</div><div class="gp-sub">Master bedroom</div></div></div>
+    <div class="gd gd4"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=700&q=85&fit=crop" alt="Villa"/><div class="gd-cap"><div class="gp-name">Villa Architecture</div><div class="gp-sub">Cycladic design</div></div></div>
+    <div class="gd gd5"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">Morning Light</div><div class="gp-sub">The pool at sunrise</div></div></div>
+    <div class="gd gd6"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&fit=crop" alt="Spa"/><div class="gd-cap"><div class="gp-name">Wellness Sanctuary</div><div class="gp-sub">Private spa</div></div></div>
+    <div class="gd gd7"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1000&q=85&fit=crop" alt="Dining"/><div class="gd-cap"><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div>
+    <div class="gd gd8"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">The View</div><div class="gp-sub">Nothing but horizon</div></div></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience">
+  <div class="s s-dark exp-mobile">
+    <div class="s-label reveal">The Experience</div>
+    <h2 class="s-h reveal d1" style="margin-bottom:2.5rem">Everything <em>arranged.</em><br>Nothing forgotten.</h2>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div class="ec-m reveal">
+        <div class="ec-m-num">01</div>
+        <div class="ec-m-title">Private Airport Transfer</div>
+        <p class="ec-m-text">Met at arrivals with a chilled towel. Chauffeured to the villa in a private vehicle. Your holiday begins at the gate, not the villa door.</p>
+        <div class="ec-m-tag">Included in all bookings</div>
+      </div>
+      <div class="ec-m reveal d1">
+        <div class="ec-m-num">02</div>
+        <div class="ec-m-title">Private Chef & Sommelier</div>
+        <p class="ec-m-text">A private chef prepares seasonal menus from the island's best producers. A sommelier pairs each evening with wines from Santorini's volcanic vines.</p>
+        <div class="ec-m-tag">On request · Daily or per occasion</div>
+      </div>
+      <div class="ec-m reveal d2">
+        <div class="ec-m-num">03</div>
+        <div class="ec-m-title">Wellness & Restoration</div>
+        <p class="ec-m-text">In-villa massage, steam room, and a yoga deck that opens to the caldera at dawn. Arrange a private session or simply have the space ready at sunrise.</p>
+        <div class="ec-m-tag">Bookable through concierge</div>
+      </div>
+      <div class="ec-m reveal d3">
+        <div class="ec-m-num">04</div>
+        <div class="ec-m-title">Island Excursions</div>
+        <p class="ec-m-text">Private catamaran sunset cruises, helicopter transfers to Mykonos, guided volcano hikes, exclusive winery visits. Arranged to your schedule and pace.</p>
+        <div class="ec-m-tag">Curated by your concierge</div>
+      </div>
+      <div class="ec-m reveal">
+        <div class="ec-m-num">05</div>
+        <div class="ec-m-title">Daily Housekeeping & Florals</div>
+        <p class="ec-m-text">Fresh linens pressed each morning. Seasonal flowers from the island market. The villa always feels like the first moment of arrival, every day.</p>
+        <div class="ec-m-tag">Every morning · Included</div>
+      </div>
+    </div>
+  </div>
+  <div class="exp-desktop">
+    <div class="exp-d-left">
+      <div class="s-label">The Experience</div>
+      <h2 class="s-h">Everything<br><em>arranged.</em><br>Nothing<br>forgotten.</h2>
+      <div class="divider"></div>
+      <p style="font-size:.68rem;line-height:2.1;color:var(--warm-dim);max-width:300px;letter-spacing:.04em">From the moment you land in Santorini to your final morning coffee above the caldera, your stay is orchestrated by a team who anticipate before you ask.</p>
+      <div class="exp-d-img-wrap">
+        <img id="expDImg" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&fit=crop" alt=""/>
+      </div>
+    </div>
+    <div class="exp-d-right">
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&fit=crop">
+        <div class="ed-num">01</div>
+        <div class="ed-title">Private Airport Transfer</div>
+        <p class="ed-text">Met at arrivals with a chilled towel, chauffeured through the island to the villa. Your holiday begins at the gate, not the villa door.</p>
+        <div class="ed-tag">Included in all bookings</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80&fit=crop">
+        <div class="ed-num">02</div>
+        <div class="ed-title">Private Chef & Sommelier</div>
+        <p class="ed-text">A private chef prepares seasonal menus from the island's best producers. A sommelier pairs each evening with wines from Santorini's volcanic vines.</p>
+        <div class="ed-tag">On request · Daily or per occasion</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80&fit=crop">
+        <div class="ed-num">03</div>
+        <div class="ed-title">Wellness & Restoration</div>
+        <p class="ed-text">In-villa massage, steam room, and a yoga deck opening to the caldera at dawn. Arrange a private session or simply have the space ready at sunrise.</p>
+        <div class="ed-tag">Bookable through concierge</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80&fit=crop">
+        <div class="ed-num">04</div>
+        <div class="ed-title">Island Excursions</div>
+        <p class="ed-text">Private catamaran sunset cruises, helicopter transfers, guided volcano hikes, exclusive winery visits. Each arranged to your schedule and pace.</p>
+        <div class="ed-tag">Curated by your concierge</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80&fit=crop">
+        <div class="ed-num">05</div>
+        <div class="ed-title">Daily Housekeeping & Florals</div>
+        <p class="ed-text">Fresh linens pressed each morning. Seasonal flowers from the island market. The villa always feels like the first moment of arrival, every day.</p>
+        <div class="ed-tag">Every morning · Included</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div id="pricing" style="background:var(--ink)">
+  <div class="pricing-header">
+    <div>
+      <div class="s-label reveal">Rates</div>
+      <h2 class="s-h reveal d1">Simple pricing.<br><em>No surprises.</em></h2>
+    </div>
+    <p class="pricing-p reveal r-r">All rates include daily housekeeping, welcome provisions, and private airport transfers for the entire estate. Minimum stays apply by season.</p>
+  </div>
+  <div class="pricing-cards">
+    <div class="pc reveal">
+      <div class="pc-season">Low Season · Apr–May, Oct</div>
+      <div class="pc-price">€1,800</div>
+      <div class="pc-unit">Per night · 4 night minimum</div>
+      <ul class="pc-list">
+        <li>All 5 bedrooms, up to 10 guests</li>
+        <li>Daily housekeeping & florals</li>
+        <li>Airport transfers included</li>
+        <li>Welcome provisions on arrival</li>
+        <li>24/7 concierge access</li>
+      </ul>
+      <a href="#booking" class="pc-cta">Enquire for dates →</a>
+    </div>
+    <div class="pc featured reveal d1">
+      <div class="pc-season">Peak Season · Jun–Sep</div>
+      <div class="pc-price">€3,200</div>
+      <div class="pc-unit">Per night · 7 night minimum</div>
+      <ul class="pc-list">
+        <li>All 5 bedrooms, up to 10 guests</li>
+        <li>Daily housekeeping & florals</li>
+        <li>Airport transfers included</li>
+        <li>Welcome champagne on arrival</li>
+        <li>Priority concierge & chef access</li>
+      </ul>
+      <a href="#booking" class="pc-cta">Check availability →</a>
+    </div>
+    <div class="pc reveal d2">
+      <div class="pc-season">Weddings & Events</div>
+      <div class="pc-price">P.O.R.</div>
+      <div class="pc-unit">Price on request</div>
+      <ul class="pc-list">
+        <li>Exclusive use of entire estate</li>
+        <li>Dedicated event coordination</li>
+        <li>Full catering & bar service</li>
+        <li>Floral design & styling</li>
+        <li>Up to 80 event guests</li>
+      </ul>
+      <a href="#booking" class="pc-cta">Request proposal →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-outer">
+  <div class="testi-bg-img"></div>
+  <div class="testi-scrim"></div>
+  <div class="testi-inner">
+    <div>
+      <h2 class="testi-left-h reveal r-l">Guests speak<br>for <em>themselves.</em></h2>
+      <div class="testi-score reveal r-l d1">
+        <div class="ts-n">4.97</div>
+        <div class="ts-stars">★★★★★</div>
+        <div class="ts-label">148 verified reviews</div>
+      </div>
+    </div>
+    <div>
+      <div class="testi-slider-wrap">
+        <div class="testi-track" id="testiTrack">
+          <div class="testi-item">
+            <p class="ti-text">"We have rented properties across Mykonos, Ibiza, and the Amalfi Coast. Villa Solaris is in a different category entirely. The pool at sunrise, the silence, the staff who anticipated before we asked. There are no words adequate enough."</p>
+            <div class="ti-author"><div class="ti-av">M</div><div><div class="ti-name">Marcus & Eleonora Webb</div><div class="ti-meta">London, UK · 10 nights, Aug 2024</div></div></div>
+          </div>
+          <div class="testi-item">
+            <p class="ti-text">"We hired the villa for our 20th anniversary with friends. The private chef created a seven-course dinner on the cliff terrace at sunset. The wine. I cannot imagine a more perfect evening existing anywhere on earth."</p>
+            <div class="ti-author"><div class="ti-av">S</div><div><div class="ti-name">Sophie & David Fontaine</div><div class="ti-meta">Paris, France · 7 nights, Jul 2024</div></div></div>
+          </div>
+          <div class="testi-item">
+            <p class="ti-text">"The booking process was seamless, the welcome genuine, and the villa itself exceeded every expectation. We arrived with a toddler and the team handled every request with complete grace. Already planning our return."</p>
+            <div class="ti-author"><div class="ti-av">A</div><div><div class="ti-name">Anastasia Karpova</div><div class="ti-meta">Dubai, UAE · 14 nights, Jun 2024</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-btns">
+        <button class="t-btn" id="tPrev">←</button>
+        <button class="t-btn" id="tNext">→</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div class="booking-outer" id="booking">
+  <div class="booking-bg-word">Solaris</div>
+  <div class="booking-grid">
+    <div class="booking-text">
+      <div class="s-label reveal">Reserve Your Stay</div>
+      <h2 class="s-h dark reveal d1">Begin your<br><em>story</em> here.</h2>
+      <p class="booking-desc reveal d2">Villa Solaris is available for a limited number of weeks each year. Enquire now and our team will respond within 4 hours with availability and a personalised quote.</p>
+      <div class="booking-inc reveal d3">
+        <div class="bi"><div class="bi-c">✓</div>All 5 bedrooms, entire estate</div>
+        <div class="bi"><div class="bi-c">✓</div>Daily housekeeping & fresh florals</div>
+        <div class="bi"><div class="bi-c">✓</div>Private airport transfers</div>
+        <div class="bi"><div class="bi-c">✓</div>Welcome champagne & provisions</div>
+        <div class="bi"><div class="bi-c">✓</div>24/7 personal concierge</div>
+        <div class="bi"><div class="bi-c">✓</div>Response guaranteed within 4 hours</div>
+      </div>
+    </div>
+    <div class="booking-form reveal r-r">
+      <div class="bf-title">Check Availability</div>
+      <div class="bf-sub">No commitment required</div>
+      <div class="bf-row">
+        <input class="bf-in" type="text" placeholder="Arrival date"/>
+        <input class="bf-in" type="text" placeholder="Departure"/>
+      </div>
+      <div class="bf-row">
+        <select class="bf-in">
+          <option value="">Guests</option>
+          <option>2 guests</option><option>4 guests</option>
+          <option>6 guests</option><option>8 guests</option><option>10 guests</option>
+        </select>
+        <select class="bf-in">
+          <option value="">Stay type</option>
+          <option>Leisure</option><option>Honeymoon</option>
+          <option>Celebration</option><option>Wedding / Event</option>
+        </select>
+      </div>
+      <div class="bf-full"><input class="bf-in" type="text" placeholder="Full name"/></div>
+      <div class="bf-full"><input class="bf-in" type="email" placeholder="Email address"/></div>
+      <div class="bf-full"><input class="bf-in" type="tel" placeholder="Phone number"/></div>
+      <div class="bf-full"><input class="bf-in" type="text" placeholder="Special requests (optional)"/></div>
+      <button class="bf-submit">Send Enquiry</button>
+      <div class="bf-note">We respond within 4 hours · No payment required to enquire</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo">Villa Solaris</div>
+      <div class="f-logo-sub">Private Estate · Santorini</div>
+      <p class="f-desc">A clifftop estate perched on Santorini's caldera. Five bedrooms, infinity pool, and an experience that redefines what a holiday can mean.</p>
+    </div>
+    <div class="f-col">
+      <h4>The Villa</h4>
+      <ul>
+        <li><a href="#">Overview & Spaces</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+        <li><a href="#">Amenities List</a></li>
+        <li><a href="#">Location & Access</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Experiences</h4>
+      <ul>
+        <li><a href="#">Private Chef</a></li>
+        <li><a href="#">Catamaran Cruise</a></li>
+        <li><a href="#">Wellness & Spa</a></li>
+        <li><a href="#">Weddings & Events</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">Check Availability</a></li>
+        <li><a href="#">+30 228 600 0000</a></li>
+        <li><a href="#">hello@villasolaris.com</a></li>
+        <li><a href="#">Santorini, 847 00, Greece</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="f-legal">© 2025 Villa Solaris. All rights reserved.</span>
+    <div class="f-soc">
+      <a href="#">Instagram</a>
+      <a href="#">Airbnb</a>
+      <a href="#">Press</a>
+      <a href="https://kosko.studio" target="_blank" class="kosko">Website by KOSKO</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* LOADER */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('out'),2600);
+});
+
+/* CURSOR */
+const isMouse=window.matchMedia('(hover:hover)').matches;
+if(isMouse){
+  const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.09;ry+=(my-ry)*.09;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,.gp,.gd,.ec-m,.exp-d-card,.pc,.h-dot,.t-btn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-hover'));
+  });
+}
+
+/* NAV */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('compact',scrollY>80),{passive:true});
+
+/* MOBILE MENU */
+let mmOpen=false;
+function closeMM(){
+  mmOpen=false;
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('bl1').style.transform='';
+  document.getElementById('bl2').style.opacity='';
+  document.getElementById('bl3').style.transform='';
+}
+document.getElementById('burger').addEventListener('click',()=>{
+  mmOpen=!mmOpen;
+  document.getElementById('mobileMenu').classList.toggle('open',mmOpen);
+  document.getElementById('bl1').style.transform=mmOpen?'translateY(6px) rotate(45deg)':'';
+  document.getElementById('bl2').style.opacity=mmOpen?'0':'';
+  document.getElementById('bl3').style.transform=mmOpen?'translateY(-6px) rotate(-45deg)':'';
+});
+
+/* HERO SLIDESHOW */
+let curSlide=0;
+const slides=document.querySelectorAll('.hero-slide');
+const hdots=document.querySelectorAll('.h-dot');
+function goHero(n){
+  slides[curSlide].classList.remove('active');
+  hdots[curSlide].classList.remove('active');
+  curSlide=(n+slides.length)%slides.length;
+  slides[curSlide].classList.add('active');
+  hdots[curSlide].classList.add('active');
+}
+setInterval(()=>goHero(curSlide+1),6000);
+hdots.forEach((d,i)=>d.addEventListener('click',()=>goHero(i)));
+
+/* STORY HORIZONTAL — desktop only */
+const storyOuter=document.getElementById('storyOuter');
+if(storyOuter&&window.innerWidth>=1024){
+  const trackH=document.getElementById('storyTrackH');
+  const sphDots=document.querySelectorAll('.sph-dot');
+  const panelCount=4;
+  function updateStory(){
+    const rect=storyOuter.getBoundingClientRect();
+    const outerH=storyOuter.offsetHeight;
+    const prog=Math.max(0,Math.min(1,-rect.top/(outerH-innerHeight)));
+    trackH.style.transform=`translateX(${-prog*(panelCount-1)*innerWidth}px)`;
+    const idx=Math.round(prog*(panelCount-1));
+    sphDots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+  }
+  addEventListener('scroll',updateStory,{passive:true});
+}
+
+/* EXP IMAGE SWAP */
+document.querySelectorAll('.exp-d-card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    const src=card.getAttribute('data-img');
+    const img=document.getElementById('expDImg');
+    if(src&&img){img.style.opacity='0';setTimeout(()=>{img.src=src;img.style.opacity='1';img.style.transition='opacity .4s ease';},200)}
+  });
+});
+
+/* TESTIMONIAL SLIDER */
+let tIdx=0;
+const tItems=document.querySelectorAll('.testi-item');
+const tTrack=document.getElementById('testiTrack');
+function goT(n){tIdx=(n+tItems.length)%tItems.length;tTrack.style.transform=`translateX(-${tIdx*100}%)`}
+document.getElementById('tNext').addEventListener('click',()=>goT(tIdx+1));
+document.getElementById('tPrev').addEventListener('click',()=>goT(tIdx-1));
+setInterval(()=>goT(tIdx+1),7000);
+let tStart=0;
+tTrack.addEventListener('touchstart',e=>{tStart=e.touches[0].clientX},{passive:true});
+tTrack.addEventListener('touchend',e=>{const diff=tStart-e.changedTouches[0].clientX;if(Math.abs(diff)>50)goT(diff>0?tIdx+1:tIdx-1);},{passive:true});
+
+/* SCROLL REVEAL — fixed for mobile using rootMargin */
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:0,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+</script>
+</body>
+</html>
