@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-<title>Villa Solaris — Private Estate, Santorini</title>
+<title>Villa Solaris — Private Beachfront Estate, Halkidiki</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet"/>
@@ -27,13 +27,7 @@ body{
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 
-/* CURSOR */
-#cur-dot,#cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .3s}
-#cur-dot{width:5px;height:5px;background:var(--gold);border-radius:50%}
-#cur-ring{width:38px;height:38px;border:1px solid rgba(184,145,74,.35);border-radius:50%;transition:width .35s cubic-bezier(.23,1,.32,1),height .35s cubic-bezier(.23,1,.32,1),border-color .35s}
-body.cur-hover #cur-dot{width:9px;height:9px}
-body.cur-hover #cur-ring{width:56px;height:56px;border-color:rgba(184,145,74,.6)}
-@media(hover:none){#cur-dot,#cur-ring{display:none}}
+/* CURSOR — removed */
 
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--ink);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;transition:opacity 1.2s ease,visibility 1.2s ease}
@@ -118,10 +112,11 @@ body.cur-hover #cur-ring{width:56px;height:56px;border-color:rgba(184,145,74,.6)
 .s-h.dark em{color:var(--gold-lo)}
 .divider{width:40px;height:1px;background:rgba(184,145,74,.2);margin:1.8rem 0}
 
-/* STORY CARDS — MOBILE */
-.story-stack{display:flex;flex-direction:column;gap:3px}
-.story-card{position:relative;overflow:hidden;min-height:85vw}
-@media(min-width:500px){.story-card{min-height:55vw;max-height:65vh}}
+/* STORY CARDS — MOBILE HORIZONTAL SWIPE */
+.story-stack{display:flex;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scroll-behavior:smooth;gap:0;scrollbar-width:none}
+.story-stack::-webkit-scrollbar{display:none}
+.story-card{position:relative;overflow:hidden;flex-shrink:0;width:100vw;height:85vw;scroll-snap-align:start}
+@media(min-width:500px){.story-card{height:60vw;max-height:70vh}}
 .story-card img{position:absolute;inset:0;transition:transform 8s ease}
 .story-card:hover img{transform:scale(1.04)}
 .sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,7,.88) 0%,rgba(12,10,7,.2) 55%,rgba(12,10,7,.1) 100%)}
@@ -133,6 +128,12 @@ body.cur-hover #cur-ring{width:56px;height:56px;border-color:rgba(184,145,74,.6)
 
 /* STORY — DESKTOP STICKY */
 .story-sticky-wrap{display:none}
+
+/* Mobile story swipe dots */
+.story-mobile-dots{display:flex;justify-content:center;gap:.5rem;padding:.9rem 0 .4rem;background:var(--ink)}
+.smd{width:20px;height:2px;background:rgba(255,255,255,.12);transition:all .3s;cursor:pointer}
+.smd.active{width:40px;background:var(--gold)}
+@media(min-width:1024px){.story-mobile-dots{display:none}}
 @media(min-width:1024px){
   .story-stack{display:none}
   .story-sticky-wrap{display:block;height:400vh;position:relative}
@@ -242,7 +243,7 @@ body.cur-hover #cur-ring{width:56px;height:56px;border-color:rgba(184,145,74,.6)
 
 /* TESTIMONIALS */
 .testi-outer{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden}
-.testi-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1600&q=85&fit=crop');background-size:cover;background-position:center 40%}
+.testi-bg-img{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=85&fit=crop');background-size:cover;background-position:center 40%}
 .testi-scrim{position:absolute;inset:0;background:rgba(12,10,7,.85)}
 .testi-inner{position:relative;z-index:2;width:100%;padding:clamp(3rem,7vw,7rem) clamp(1.2rem,5vw,5rem);display:grid;grid-template-columns:1fr;gap:3rem}
 @media(min-width:768px){.testi-inner{grid-template-columns:1fr 2fr;gap:6rem;align-items:center}}
@@ -335,12 +336,10 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 
 <div id="loader">
   <div class="ld-logo">Villa Solaris</div>
-  <div class="ld-sub">Private Estate · Santorini</div>
+  <div class="ld-sub">Private Estate · Halkidiki</div>
   <div class="ld-bar-wrap"><div class="ld-bar"></div></div>
 </div>
 
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
 
 <nav id="nav">
   <div class="nav-logo">
@@ -374,24 +373,24 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 <!-- HERO -->
 <section id="hero">
   <div class="hero-slide active">
-    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1800&q=85&fit=crop" alt="Villa infinity pool"/>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=85&fit=crop" alt="Villa infinity pool"/>
   </div>
   <div class="hero-slide">
-    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800&q=85&fit=crop" alt="Pool at sunset"/>
+    <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1800&q=85&fit=crop" alt="Pool at sunset"/>
   </div>
   <div class="hero-slide">
-    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1800&q=85&fit=crop" alt="Infinity pool view"/>
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=85&fit=crop" alt="Infinity pool view"/>
   </div>
   <div class="hero-grad"></div>
   <div class="hero-body">
-    <div class="hero-eyebrow">Santorini, Greece &nbsp;·&nbsp; Clifftop Private Estate</div>
+    <div class="hero-eyebrow">Halkidiki, Greece &nbsp;·&nbsp; Private Beachfront Estate</div>
     <h1 class="hero-h1">
       <span class="h1-line">Where the</span>
       <span class="h1-line">horizon ends,</span>
       <span class="h1-line">yours begins.</span>
     </h1>
     <div class="hero-footer">
-      <p class="hero-desc">Perched 260 metres above the Aegean. Five bedrooms, an infinity pool, and a silence you will carry home long after you leave.</p>
+      <p class="hero-desc">Directly on the Aegean shore. Five bedrooms, a private pool that opens to the sea, and the kind of silence you will carry home long after you leave.</p>
       <div class="hero-actions">
         <a href="#booking" class="hero-btn">Check Availability</a>
         <div class="hero-pills">
@@ -416,22 +415,22 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <div class="mq-item"><span class="mq-n">580m²</span><span class="mq-t">Private Estate</span></div>
+    <div class="mq-item"><span class="mq-n">480m²</span><span class="mq-t">Private Estate</span></div>
     <div class="mq-item"><span class="mq-n">5</span><span class="mq-t">King Bedrooms</span></div>
     <div class="mq-item"><span class="mq-n">4.97</span><span class="mq-t">Guest Score</span></div>
-    <div class="mq-item"><span class="mq-n">260m</span><span class="mq-t">Above the Aegean</span></div>
+    <div class="mq-item"><span class="mq-n">Direct</span><span class="mq-t">Sea Access</span></div>
     <div class="mq-item"><span class="mq-n">148</span><span class="mq-t">Reviews</span></div>
     <div class="mq-item"><span class="mq-n">24/7</span><span class="mq-t">Concierge</span></div>
     <div class="mq-item"><span class="mq-n">10</span><span class="mq-t">Max Guests</span></div>
-    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Pool View</span></div>
-    <div class="mq-item"><span class="mq-n">580m²</span><span class="mq-t">Private Estate</span></div>
+    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Sea View</span></div>
+    <div class="mq-item"><span class="mq-n">480m²</span><span class="mq-t">Private Estate</span></div>
     <div class="mq-item"><span class="mq-n">5</span><span class="mq-t">King Bedrooms</span></div>
     <div class="mq-item"><span class="mq-n">4.97</span><span class="mq-t">Guest Score</span></div>
-    <div class="mq-item"><span class="mq-n">260m</span><span class="mq-t">Above the Aegean</span></div>
+    <div class="mq-item"><span class="mq-n">Direct</span><span class="mq-t">Sea Access</span></div>
     <div class="mq-item"><span class="mq-n">148</span><span class="mq-t">Reviews</span></div>
     <div class="mq-item"><span class="mq-n">24/7</span><span class="mq-t">Concierge</span></div>
     <div class="mq-item"><span class="mq-n">10</span><span class="mq-t">Max Guests</span></div>
-    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Pool View</span></div>
+    <div class="mq-item"><span class="mq-n">∞</span><span class="mq-t">Sea View</span></div>
   </div>
 </div>
 
@@ -440,41 +439,48 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
   <!-- MOBILE: vertical image cards -->
   <div class="story-stack">
     <div class="story-card">
-      <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1000&q=85&fit=crop" alt="Villa architecture"/>
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1000&q=85&fit=crop" alt="Villa architecture"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">01</div>
-        <h2 class="sc-title">Built into <em>the cliff itself.</em></h2>
-        <p class="sc-text">Villa Solaris follows the ancient Cycladic tradition — curved whitewashed walls, volcanic stone floors, and an architecture that belongs to its landscape.</p>
+        <h2 class="sc-title">Where pine trees <em>meet the sea.</em></h2>
+        <p class="sc-text">Villa Solaris sits at the edge of the Aegean — stone terraces, shaded pergolas, and a garden that opens directly onto a private stretch of turquoise water.</p>
       </div>
     </div>
     <div class="story-card">
-      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1000&q=85&fit=crop" alt="Infinity pool"/>
+      <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1000&q=85&fit=crop" alt="Infinity pool"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">02</div>
-        <h2 class="sc-title">A pool that <em>touches the sky.</em></h2>
-        <p class="sc-text">The 22-metre infinity pool appears to dissolve into the Aegean horizon. At sunrise it turns copper. At dusk, deep violet. No photograph ever quite captures it.</p>
+        <h2 class="sc-title">A pool that <em>opens to the sea.</em></h2>
+        <p class="sc-text">The private pool faces the Aegean directly. Step from the water, cross the terrace, and you are already in the sea. A ten-second journey that never gets old.</p>
       </div>
     </div>
     <div class="story-card">
-      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1000&q=85&fit=crop" alt="Suite interior"/>
+      <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1000&q=85&fit=crop" alt="Suite interior"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">03</div>
         <h2 class="sc-title">Five rooms. <em>Five worlds.</em></h2>
-        <p class="sc-text">Each suite is individually designed with its own caldera view. Linen pressed each morning. Flowers chosen fresh from the island market. Everything considered.</p>
+        <p class="sc-text">Each suite is individually designed with its own sea view. Linen pressed each morning. Flowers chosen fresh from the local market. Everything considered.</p>
       </div>
     </div>
     <div class="story-card">
-      <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1000&q=85&fit=crop" alt="Wellness"/>
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=85&fit=crop" alt="Wellness"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">04</div>
         <h2 class="sc-title">Restore. <em>Completely.</em></h2>
-        <p class="sc-text">The wellness sanctuary offers deep-tissue massage, a steam room, and a yoga deck that opens to the caldera at dawn. Arranged entirely to your schedule.</p>
+        <p class="sc-text">In-villa massage, a shaded outdoor lounge, and a terrace that catches the morning light above the sea. Nothing to do but feel the day slow down around you.</p>
       </div>
     </div>
+  </div>
+  <!-- Mobile swipe dots -->
+  <div class="story-mobile-dots" id="storyMobileDots">
+    <div class="smd active"></div>
+    <div class="smd"></div>
+    <div class="smd"></div>
+    <div class="smd"></div>
   </div>
 
   <!-- DESKTOP: sticky horizontal scroll -->
@@ -482,39 +488,39 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
     <div class="story-sticky-inner">
       <div class="story-track-h" id="storyTrackH">
         <div class="story-panel-h">
-          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1800&q=85&fit=crop" alt="Villa"/>
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=85&fit=crop" alt="Villa"/>
           <div class="sph-overlay" style="background:linear-gradient(135deg,rgba(12,10,7,.72) 0%,rgba(12,10,7,.28) 100%)"></div>
           <div class="sph-content">
             <div class="sph-num">01</div>
-            <h2 class="sph-title">Built into <em>the cliff itself.</em></h2>
-            <p class="sph-text">Villa Solaris follows the ancient Cycladic tradition — curved whitewashed walls, volcanic stone floors, architecture that belongs to its landscape rather than imposing upon it.</p>
+            <h2 class="sph-title">Where pine trees <em>meet the sea.</em></h2>
+            <p class="sph-text">Villa Solaris sits at the edge of the Aegean — stone terraces, shaded pergolas, and a garden that opens directly onto a private stretch of turquoise water.</p>
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800&q=85&fit=crop" alt="Pool"/>
+          <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1800&q=85&fit=crop" alt="Pool"/>
           <div class="sph-overlay" style="background:rgba(12,10,7,.5)"></div>
           <div class="sph-content">
             <div class="sph-num">02</div>
-            <h2 class="sph-title">A pool that <em>touches the sky.</em></h2>
-            <p class="sph-text">The 22-metre infinity pool appears to dissolve into the Aegean horizon. At sunrise it turns the colour of copper. At dusk, deep violet. You have to be there.</p>
+            <h2 class="sph-title">A pool that <em>opens to the sea.</em></h2>
+            <p class="sph-text">The private pool faces the Aegean directly. Step from the water, cross the terrace, and you are already in the sea. A ten-second journey that never gets old.</p>
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1800&q=85&fit=crop" alt="Suite"/>
+          <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1800&q=85&fit=crop" alt="Suite"/>
           <div class="sph-overlay" style="background:rgba(12,10,7,.52)"></div>
           <div class="sph-content">
             <div class="sph-num">03</div>
             <h2 class="sph-title">Five rooms. <em>Five worlds.</em></h2>
-            <p class="sph-text">Each suite individually designed. Each one with its own caldera view. Linen sheets pressed each morning. Flowers from the island market. Everything considered.</p>
+            <p class="sph-text">Each suite individually designed. Each one with its own sea view. Linen sheets pressed each morning. Flowers from the local market. Everything considered.</p>
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1800&q=85&fit=crop" alt="Wellness"/>
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1800&q=85&fit=crop" alt="Wellness"/>
           <div class="sph-overlay" style="background:linear-gradient(to top,rgba(12,10,7,.72),rgba(12,10,7,.28))"></div>
           <div class="sph-content">
             <div class="sph-num">04</div>
             <h2 class="sph-title">Restore. <em>Completely.</em></h2>
-            <p class="sph-text">The wellness sanctuary offers deep-tissue massage, steam room, and a yoga deck that opens to the caldera at dawn. Your concierge arranges everything.</p>
+            <p class="sph-text">In-villa massage, a shaded outdoor lounge, and a terrace that catches the morning light above the sea. Nothing to do but feel the day slow down around you.</p>
           </div>
         </div>
       </div>
@@ -538,22 +544,22 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
     <a href="#booking" class="gal-link reveal d2">Request full tour →</a>
   </div>
   <div class="gallery-mobile reveal r-s">
-    <div class="gp"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=85&fit=crop" alt="Pool"/><div class="gp-cap"><div><div class="gp-name">The Infinity Pool</div><div class="gp-sub">Caldera edge</div></div></div></div>
-    <div class="gp"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=85&fit=crop" alt="Resort"/><div class="gp-cap"><div><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div></div>
-    <div class="gp"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=85&fit=crop" alt="Room"/><div class="gp-cap"><div><div class="gp-name">Caldera Suite</div><div class="gp-sub">Master bedroom</div></div></div></div>
-    <div class="gp"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=85&fit=crop" alt="Morning"/><div class="gp-cap"><div><div class="gp-name">Morning Light</div><div class="gp-sub">Pool at sunrise</div></div></div></div>
-    <div class="gp"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=85&fit=crop" alt="Spa"/><div class="gp-cap"><div><div class="gp-name">Wellness Spa</div><div class="gp-sub">Private sanctuary</div></div></div></div>
-    <div class="gp"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=85&fit=crop" alt="Dining"/><div class="gp-cap"><div><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=85&fit=crop" alt="Pool"/><div class="gp-cap"><div><div class="gp-name">The Infinity Pool</div><div class="gp-sub">Private sea edge</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=600&q=85&fit=crop" alt="Resort"/><div class="gp-cap"><div><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=600&q=85&fit=crop" alt="Room"/><div class="gp-cap"><div><div class="gp-name">Sea View Suite</div><div class="gp-sub">Master bedroom</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=85&fit=crop" alt="Morning"/><div class="gp-cap"><div><div class="gp-name">Morning Light</div><div class="gp-sub">Pool at sunrise</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=85&fit=crop" alt="Spa"/><div class="gp-cap"><div><div class="gp-name">Wellness Spa</div><div class="gp-sub">Private sanctuary</div></div></div></div>
+    <div class="gp"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=85&fit=crop" alt="Dining"/><div class="gp-cap"><div><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div></div>
   </div>
   <div class="gallery-desktop">
-    <div class="gd gd1"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=900&q=85&fit=crop" alt="Pool"/><div class="gd-cap"><div class="gp-name">The Infinity Pool</div><div class="gp-sub">22 metres · Caldera edge</div></div></div>
-    <div class="gd gd2"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85&fit=crop" alt="Resort"/><div class="gd-cap"><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div>
-    <div class="gd gd3"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=85&fit=crop" alt="Room"/><div class="gd-cap"><div class="gp-name">Caldera Suite</div><div class="gp-sub">Master bedroom</div></div></div>
-    <div class="gd gd4"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=700&q=85&fit=crop" alt="Villa"/><div class="gd-cap"><div class="gp-name">Villa Architecture</div><div class="gp-sub">Cycladic design</div></div></div>
-    <div class="gd gd5"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">Morning Light</div><div class="gp-sub">The pool at sunrise</div></div></div>
-    <div class="gd gd6"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&q=85&fit=crop" alt="Spa"/><div class="gd-cap"><div class="gp-name">Wellness Sanctuary</div><div class="gp-sub">Private spa</div></div></div>
-    <div class="gd gd7"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1000&q=85&fit=crop" alt="Dining"/><div class="gd-cap"><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div>
-    <div class="gd gd8"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">The View</div><div class="gp-sub">Nothing but horizon</div></div></div>
+    <div class="gd gd1"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=85&fit=crop" alt="Pool"/><div class="gd-cap"><div class="gp-name">The Infinity Pool</div><div class="gp-sub">22 metres · Private sea edge</div></div></div>
+    <div class="gd gd2"><img src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=800&q=85&fit=crop" alt="Resort"/><div class="gd-cap"><div class="gp-name">Pool Terrace</div><div class="gp-sub">Golden hour</div></div></div>
+    <div class="gd gd3"><img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=700&q=85&fit=crop" alt="Room"/><div class="gd-cap"><div class="gp-name">Sea View Suite</div><div class="gp-sub">Master bedroom</div></div></div>
+    <div class="gd gd4"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=85&fit=crop" alt="Villa"/><div class="gd-cap"><div class="gp-name">Villa Architecture</div><div class="gp-sub">Stone terrace &amp; garden</div></div></div>
+    <div class="gd gd5"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">Morning Light</div><div class="gp-sub">The pool at sunrise</div></div></div>
+    <div class="gd gd6"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=700&q=85&fit=crop" alt="Spa"/><div class="gd-cap"><div class="gp-name">Wellness Sanctuary</div><div class="gp-sub">Private spa</div></div></div>
+    <div class="gd gd7"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=85&fit=crop" alt="Dining"/><div class="gd-cap"><div class="gp-name">Al Fresco Dining</div><div class="gp-sub">Chef's table</div></div></div>
+    <div class="gd gd8"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=85&fit=crop" alt="View"/><div class="gd-cap"><div class="gp-name">The View</div><div class="gp-sub">Nothing but horizon</div></div></div>
   </div>
 </div>
 
@@ -565,80 +571,80 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
     <div style="display:flex;flex-direction:column;gap:2px">
       <div class="ec-m reveal">
         <div class="ec-m-num">01</div>
-        <div class="ec-m-title">Private Airport Transfer</div>
-        <p class="ec-m-text">Met at arrivals with a chilled towel. Chauffeured to the villa in a private vehicle. Your holiday begins at the gate, not the villa door.</p>
-        <div class="ec-m-tag">Included in all bookings</div>
+        <div class="ec-m-title">The Pool, All Day</div>
+        <p class="ec-m-text">It faces the sea and it's yours alone. No reservations, no towel-saving, no strangers. Just cold water, warm stone, and as many hours as you want.</p>
+        <div class="ec-m-tag">Private · Open all day</div>
       </div>
       <div class="ec-m reveal d1">
         <div class="ec-m-num">02</div>
-        <div class="ec-m-title">Private Chef & Sommelier</div>
-        <p class="ec-m-text">A private chef prepares seasonal menus from the island's best producers. A sommelier pairs each evening with wines from Santorini's volcanic vines.</p>
-        <div class="ec-m-tag">On request · Daily or per occasion</div>
+        <div class="ec-m-title">Breakfast on the Terrace</div>
+        <p class="ec-m-text">Fresh bread, local honey, fruit, coffee. Ready each morning when you are — not when the buffet opens. Eaten outside, overlooking the water, in your own time.</p>
+        <div class="ec-m-tag">Every morning · Included</div>
       </div>
       <div class="ec-m reveal d2">
         <div class="ec-m-num">03</div>
-        <div class="ec-m-title">Wellness & Restoration</div>
-        <p class="ec-m-text">In-villa massage, steam room, and a yoga deck that opens to the caldera at dawn. Arrange a private session or simply have the space ready at sunrise.</p>
-        <div class="ec-m-tag">Bookable through concierge</div>
+        <div class="ec-m-title">BBQ Evenings</div>
+        <p class="ec-m-text">The outdoor grill is set up and ready. Fish from the morning market, local sausages, vegetables from the garden. Light it when you feel like it. Eat when you're hungry.</p>
+        <div class="ec-m-tag">Equipment & supplies provided</div>
       </div>
       <div class="ec-m reveal d3">
         <div class="ec-m-num">04</div>
-        <div class="ec-m-title">Island Excursions</div>
-        <p class="ec-m-text">Private catamaran sunset cruises, helicopter transfers to Mykonos, guided volcano hikes, exclusive winery visits. Arranged to your schedule and pace.</p>
-        <div class="ec-m-tag">Curated by your concierge</div>
+        <div class="ec-m-title">Direct Sea Access</div>
+        <p class="ec-m-text">The water is thirty seconds from the front door. No beach club, no entrance fee, no queue. Mask and snorkel in the rack. The sea floor here is worth looking at.</p>
+        <div class="ec-m-tag">Steps to the water</div>
       </div>
       <div class="ec-m reveal">
         <div class="ec-m-num">05</div>
-        <div class="ec-m-title">Daily Housekeeping & Florals</div>
-        <p class="ec-m-text">Fresh linens pressed each morning. Seasonal flowers from the island market. The villa always feels like the first moment of arrival, every day.</p>
-        <div class="ec-m-tag">Every morning · Included</div>
+        <div class="ec-m-title">Daily Housekeeping</div>
+        <p class="ec-m-text">The villa is tidied, towels replaced, and everything reset while you're out. Come back to a cool, clean house. It sounds simple. It makes a real difference.</p>
+        <div class="ec-m-tag">Every day · Included</div>
       </div>
     </div>
   </div>
   <div class="exp-desktop">
     <div class="exp-d-left">
       <div class="s-label">The Experience</div>
-      <h2 class="s-h">Everything<br><em>arranged.</em><br>Nothing<br>forgotten.</h2>
+      <h2 class="s-h">The things<br>that <em>matter.</em><br>Done<br>properly.</h2>
       <div class="divider"></div>
-      <p style="font-size:.68rem;line-height:2.1;color:var(--warm-dim);max-width:300px;letter-spacing:.04em">From the moment you land in Santorini to your final morning coffee above the caldera, your stay is orchestrated by a team who anticipate before you ask.</p>
+      <p style="font-size:.68rem;line-height:2.1;color:var(--warm-dim);max-width:300px;letter-spacing:.04em">Not a list of extras. The things every good holiday actually needs — done well, ready when you are, and never in your way.</p>
       <div class="exp-d-img-wrap">
-        <img id="expDImg" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&fit=crop" alt=""/>
+        <img id="expDImg" src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=600&q=80&fit=crop" alt=""/>
       </div>
     </div>
     <div class="exp-d-right">
-      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80&fit=crop">
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?w=600&q=80&fit=crop">
         <div class="ed-num">01</div>
-        <div class="ed-title">Private Airport Transfer</div>
-        <p class="ed-text">Met at arrivals with a chilled towel, chauffeured through the island to the villa. Your holiday begins at the gate, not the villa door.</p>
-        <div class="ed-tag">Included in all bookings</div>
+        <div class="ed-title">The Pool, All Day</div>
+        <p class="ed-text">It faces the sea and it's yours alone. No reservations, no towel-saving, no strangers. Cold water, warm stone, as many hours as you want.</p>
+        <div class="ed-tag">Private · Open all day</div>
         <div class="ed-arrow">↗</div>
       </div>
-      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80&fit=crop">
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&fit=crop">
         <div class="ed-num">02</div>
-        <div class="ed-title">Private Chef & Sommelier</div>
-        <p class="ed-text">A private chef prepares seasonal menus from the island's best producers. A sommelier pairs each evening with wines from Santorini's volcanic vines.</p>
-        <div class="ed-tag">On request · Daily or per occasion</div>
-        <div class="ed-arrow">↗</div>
-      </div>
-      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80&fit=crop">
-        <div class="ed-num">03</div>
-        <div class="ed-title">Wellness & Restoration</div>
-        <p class="ed-text">In-villa massage, steam room, and a yoga deck opening to the caldera at dawn. Arrange a private session or simply have the space ready at sunrise.</p>
-        <div class="ed-tag">Bookable through concierge</div>
-        <div class="ed-arrow">↗</div>
-      </div>
-      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80&fit=crop">
-        <div class="ed-num">04</div>
-        <div class="ed-title">Island Excursions</div>
-        <p class="ed-text">Private catamaran sunset cruises, helicopter transfers, guided volcano hikes, exclusive winery visits. Each arranged to your schedule and pace.</p>
-        <div class="ed-tag">Curated by your concierge</div>
-        <div class="ed-arrow">↗</div>
-      </div>
-      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80&fit=crop">
-        <div class="ed-num">05</div>
-        <div class="ed-title">Daily Housekeeping & Florals</div>
-        <p class="ed-text">Fresh linens pressed each morning. Seasonal flowers from the island market. The villa always feels like the first moment of arrival, every day.</p>
+        <div class="ed-title">Breakfast on the Terrace</div>
+        <p class="ed-text">Fresh bread, local honey, fruit, coffee — ready each morning on the terrace. Eaten outside, overlooking the water, in your own time. Not when the buffet opens.</p>
         <div class="ed-tag">Every morning · Included</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80&fit=crop">
+        <div class="ed-num">03</div>
+        <div class="ed-title">BBQ Evenings</div>
+        <p class="ed-text">The outdoor grill is set up and stocked. Fish from the morning market, local sausages, garden vegetables. Light it when you feel like it. No bookings required.</p>
+        <div class="ed-tag">Equipment & supplies provided</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&fit=crop">
+        <div class="ed-num">04</div>
+        <div class="ed-title">Direct Sea Access</div>
+        <p class="ed-text">The water is thirty seconds from the front door. Mask and snorkel in the rack. The sea floor here is worth looking at. No beach club, no queue, no fee.</p>
+        <div class="ed-tag">Steps to the water</div>
+        <div class="ed-arrow">↗</div>
+      </div>
+      <div class="exp-d-card" data-img="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=80&fit=crop">
+        <div class="ed-num">05</div>
+        <div class="ed-title">Daily Housekeeping</div>
+        <p class="ed-text">The villa is tidied, towels replaced, and everything reset while you're out. Come back to a cool, clean house. It sounds simple. It makes a real difference.</p>
+        <div class="ed-tag">Every day · Included</div>
         <div class="ed-arrow">↗</div>
       </div>
     </div>
@@ -652,7 +658,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       <div class="s-label reveal">Rates</div>
       <h2 class="s-h reveal d1">Simple pricing.<br><em>No surprises.</em></h2>
     </div>
-    <p class="pricing-p reveal r-r">All rates include daily housekeeping, welcome provisions, and private airport transfers for the entire estate. Minimum stays apply by season.</p>
+    <p class="pricing-p reveal r-r">All rates include daily housekeeping, breakfast provisions, and full use of all outdoor spaces. Minimum stays apply by season.</p>
   </div>
   <div class="pricing-cards">
     <div class="pc reveal">
@@ -662,9 +668,9 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       <ul class="pc-list">
         <li>All 5 bedrooms, up to 10 guests</li>
         <li>Daily housekeeping & florals</li>
-        <li>Airport transfers included</li>
-        <li>Welcome provisions on arrival</li>
-        <li>24/7 concierge access</li>
+        <li>Breakfast provisions included</li>
+        <li>Welcome basket on arrival</li>
+        <li>BBQ setup &amp; sea equipment</li>
       </ul>
       <a href="#booking" class="pc-cta">Enquire for dates →</a>
     </div>
@@ -675,8 +681,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       <ul class="pc-list">
         <li>All 5 bedrooms, up to 10 guests</li>
         <li>Daily housekeeping & florals</li>
-        <li>Airport transfers included</li>
-        <li>Welcome champagne on arrival</li>
+        <li>Breakfast provisions included</li>
+        <li>Welcome basket &amp; cold drinks</li>
         <li>Priority concierge & chef access</li>
       </ul>
       <a href="#booking" class="pc-cta">Check availability →</a>
@@ -714,15 +720,15 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       <div class="testi-slider-wrap">
         <div class="testi-track" id="testiTrack">
           <div class="testi-item">
-            <p class="ti-text">"We have rented properties across Mykonos, Ibiza, and the Amalfi Coast. Villa Solaris is in a different category entirely. The pool at sunrise, the silence, the staff who anticipated before we asked. There are no words adequate enough."</p>
+            <p class="ti-text">"We have rented properties across Mykonos, Corfu, and the Amalfi Coast. Villa Solaris is in a different category entirely. The private beach, the silence, the team who anticipated before we asked. There are no words adequate enough."</p>
             <div class="ti-author"><div class="ti-av">M</div><div><div class="ti-name">Marcus & Eleonora Webb</div><div class="ti-meta">London, UK · 10 nights, Aug 2024</div></div></div>
           </div>
           <div class="testi-item">
-            <p class="ti-text">"We hired the villa for our 20th anniversary with friends. The private chef created a seven-course dinner on the cliff terrace at sunset. The wine. I cannot imagine a more perfect evening existing anywhere on earth."</p>
+            <p class="ti-text">"We brought the whole family — three generations — and it worked perfectly. The private pool, the direct sea access, the chef who came twice. Halkidiki is extraordinary and this villa made it even more so."</p>
             <div class="ti-author"><div class="ti-av">S</div><div><div class="ti-name">Sophie & David Fontaine</div><div class="ti-meta">Paris, France · 7 nights, Jul 2024</div></div></div>
           </div>
           <div class="testi-item">
-            <p class="ti-text">"The booking process was seamless, the welcome genuine, and the villa itself exceeded every expectation. We arrived with a toddler and the team handled every request with complete grace. Already planning our return."</p>
+            <p class="ti-text">"The booking process was seamless, the welcome genuine, and the villa itself exceeded every expectation. We arrived with young children and the team handled every request with complete grace. Already planning our return."</p>
             <div class="ti-author"><div class="ti-av">A</div><div><div class="ti-name">Anastasia Karpova</div><div class="ti-meta">Dubai, UAE · 14 nights, Jun 2024</div></div></div>
           </div>
         </div>
@@ -745,10 +751,10 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       <p class="booking-desc reveal d2">Villa Solaris is available for a limited number of weeks each year. Enquire now and our team will respond within 4 hours with availability and a personalised quote.</p>
       <div class="booking-inc reveal d3">
         <div class="bi"><div class="bi-c">✓</div>All 5 bedrooms, entire estate</div>
-        <div class="bi"><div class="bi-c">✓</div>Daily housekeeping & fresh florals</div>
-        <div class="bi"><div class="bi-c">✓</div>Private airport transfers</div>
-        <div class="bi"><div class="bi-c">✓</div>Welcome champagne & provisions</div>
-        <div class="bi"><div class="bi-c">✓</div>24/7 personal concierge</div>
+        <div class="bi"><div class="bi-c">✓</div>Daily housekeeping & fresh towels</div>
+        <div class="bi"><div class="bi-c">✓</div>Breakfast provisions every morning</div>
+        <div class="bi"><div class="bi-c">✓</div>Welcome basket & cold drinks on arrival</div>
+        <div class="bi"><div class="bi-c">✓</div>BBQ setup & sea equipment included</div>
         <div class="bi"><div class="bi-c">✓</div>Response guaranteed within 4 hours</div>
       </div>
     </div>
@@ -786,8 +792,8 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
   <div class="footer-top">
     <div>
       <div class="f-logo">Villa Solaris</div>
-      <div class="f-logo-sub">Private Estate · Santorini</div>
-      <p class="f-desc">A clifftop estate perched on Santorini's caldera. Five bedrooms, infinity pool, and an experience that redefines what a holiday can mean.</p>
+      <div class="f-logo-sub">Private Estate · Halkidiki</div>
+      <p class="f-desc">A beachfront estate on the Aegean shore in Halkidiki. Five bedrooms, private pool, and an experience that redefines what a Greek summer holiday can mean.</p>
     </div>
     <div class="f-col">
       <h4>The Villa</h4>
@@ -813,7 +819,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
         <li><a href="#">Check Availability</a></li>
         <li><a href="#">+30 228 600 0000</a></li>
         <li><a href="#">hello@villasolaris.com</a></li>
-        <li><a href="#">Santorini, 847 00, Greece</a></li>
+        <li><a href="#">Halkidiki, 63080, Greece</a></li>
       </ul>
     </div>
   </div>
@@ -833,19 +839,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 window.addEventListener('load',()=>{
   setTimeout(()=>document.getElementById('loader').classList.add('out'),2600);
 });
-
-/* CURSOR */
-const isMouse=window.matchMedia('(hover:hover)').matches;
-if(isMouse){
-  const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
-  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-  (function loop(){rx+=(mx-rx)*.09;ry+=(my-ry)*.09;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
-  document.querySelectorAll('a,button,.gp,.gd,.ec-m,.exp-d-card,.pc,.h-dot,.t-btn').forEach(el=>{
-    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-hover'));
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-hover'));
-  });
-}
 
 /* NAV */
 const nav=document.getElementById('nav');
@@ -925,6 +918,19 @@ const revObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
 },{threshold:0,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* MOBILE STORY SWIPE DOTS */
+const storyStack=document.querySelector('.story-stack');
+const mobileDots=document.querySelectorAll('.smd');
+if(storyStack&&mobileDots.length){
+  storyStack.addEventListener('scroll',()=>{
+    const idx=Math.round(storyStack.scrollLeft/storyStack.offsetWidth);
+    mobileDots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+  },{passive:true});
+  mobileDots.forEach((d,i)=>d.addEventListener('click',()=>{
+    storyStack.scrollTo({left:i*storyStack.offsetWidth,behavior:'smooth'});
+  }));
+}
 </script>
 </body>
 </html>
