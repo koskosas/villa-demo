@@ -55,8 +55,8 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 #hero{height:100svh;position:relative;overflow:hidden;min-height:600px}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.2s ease}
 .hero-slide.active{opacity:1}
-.hero-slide img{transform:scale(1.06);transition:transform 10s ease;object-position:center}
-.hero-slide.active img{transform:scale(1)}
+.hero-slide img{transform:scale(1.0);transition:transform 10s ease;object-position:center}
+.hero-slide.active img{transform:scale(1.0)}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,7,.95) 0%,rgba(12,10,7,.35) 40%,rgba(12,10,7,.12) 100%),linear-gradient(90deg,rgba(12,10,7,.55) 0%,transparent 60%)}
 .hero-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.4rem,5vw,5rem) clamp(4.5rem,9vw,6.5rem)}
 .hero-eyebrow{font-size:clamp(.52rem,1.8vw,.6rem);letter-spacing:.45em;text-transform:uppercase;color:rgba(184,145,74,.9);margin-bottom:clamp(.8rem,2.5vw,1.8rem);display:flex;align-items:center;gap:1rem;opacity:0;animation:hFade .9s 2.8s ease forwards}
@@ -374,13 +374,13 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 <!-- HERO -->
 <section id="hero">
   <div class="hero-slide active">
-    <img src="https://i.imgur.com/sC0T93x.jpeg" alt="Villa exterior and pool"/>
+    <img src="https://i.imgur.com/sC0T93x.jpeg" alt="Villa exterior and pool" style="object-fit:cover;object-position:center center"/>
   </div>
   <div class="hero-slide">
-    <img src="https://i.imgur.com/sfnkgAw.jpeg" alt="Villa at night"/>
+    <img src="https://i.imgur.com/sfnkgAw.jpeg" alt="Villa at night" style="object-fit:cover;object-position:center center"/>
   </div>
   <div class="hero-slide">
-    <img src="https://i.imgur.com/DkuVATj.jpeg" alt="Pool at night"/>
+    <img src="https://i.imgur.com/glxDb8c.jpeg" alt="Villa daytime" style="object-fit:cover;object-position:center center"/>
   </div>
   <div class="hero-grad"></div>
   <div class="hero-body">
@@ -466,7 +466,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
       </div>
     </div>
     <div class="story-card">
-      <img src="https://i.imgur.com/aRBJXDP.jpeg" alt="Crystal clear Greek sea"/>
+      <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">04</div>
@@ -516,7 +516,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://i.imgur.com/aRBJXDP.jpeg" alt="Greek sea"/>
+          <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom"/>
           <div class="sph-overlay" style="background:linear-gradient(to top,rgba(12,10,7,.65),rgba(12,10,7,.25))"></div>
           <div class="sph-content">
             <div class="sph-num">04</div>
@@ -545,22 +545,22 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
     <a href="#booking" class="gal-link reveal d2">Request full tour →</a>
   </div>
   <div class="gallery-mobile reveal r-s">
-    <div class="gp"><img src="https://i.imgur.com/sC0T93x.jpeg" alt="Villa exterior"/><div class="gp-cap"><div><div class="gp-name">Villa Exterior</div><div class="gp-sub">Private pool & garden</div></div></div></div>
+    <div class="gp"><img src="https://i.imgur.com/VMdYVO5.jpeg" alt="Halkidiki coast"/><div class="gp-cap"><div><div class="gp-name">Halkidiki Coast</div><div class="gp-sub">Your doorstep</div></div></div></div>
     <div class="gp"><img src="https://i.imgur.com/RSu72Sz.jpeg" alt="Pool evening"/><div class="gp-cap"><div><div class="gp-name">Pool at Evening</div><div class="gp-sub">Garden waterfall</div></div></div></div>
-    <div class="gp"><img src="https://i.imgur.com/SbdtHF4.jpeg" alt="Pool relaxing"/><div class="gp-cap"><div><div class="gp-name">Poolside</div><div class="gp-sub">All yours</div></div></div></div>
-    <div class="gp"><img src="https://i.imgur.com/VMdYVO5.jpeg" alt="Halkidiki beach"/><div class="gp-cap"><div><div class="gp-name">Halkidiki Coast</div><div class="gp-sub">Steps away</div></div></div></div>
-    <div class="gp"><img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom"/><div class="gp-cap"><div><div class="gp-name">Marble Bathroom</div><div class="gp-sub">Freestanding bath</div></div></div></div>
+    <div class="gp"><img src="https://i.imgur.com/bQDwPv0.jpeg" alt="Jetski sea"/><div class="gp-cap"><div><div class="gp-name">The Sea</div><div class="gp-sub">Turquoise water</div></div></div></div>
     <div class="gp"><img src="https://i.imgur.com/w2uvSD0.jpeg" alt="Sea caves"/><div class="gp-cap"><div><div class="gp-name">Sea Caves</div><div class="gp-sub">Nearby excursion</div></div></div></div>
+    <div class="gp"><img src="https://i.imgur.com/aRBJXDP.jpeg" alt="Crystal sea"/><div class="gp-cap"><div><div class="gp-name">Crystal Waters</div><div class="gp-sub">Aegean sea</div></div></div></div>
+    <div class="gp"><img src="https://i.imgur.com/YioTRSH.jpeg" alt="Greek building"/><div class="gp-cap"><div><div class="gp-name">Greek Summer</div><div class="gp-sub">The neighbourhood</div></div></div></div>
   </div>
   <div class="gallery-desktop">
-    <div class="gd gd1"><img src="https://i.imgur.com/sC0T93x.jpeg" alt="Villa"/><div class="gd-cap"><div class="gp-name">Villa & Private Pool</div><div class="gp-sub">Modern estate · Halkidiki</div></div></div>
-    <div class="gd gd2"><img src="https://i.imgur.com/RSu72Sz.jpeg" alt="Pool evening"/><div class="gd-cap"><div class="gp-name">Pool at Evening</div><div class="gp-sub">Garden & waterfall feature</div></div></div>
-    <div class="gd gd3"><img src="https://i.imgur.com/SbdtHF4.jpeg" alt="Poolside"/><div class="gd-cap"><div class="gp-name">Poolside</div><div class="gp-sub">All yours, all day</div></div></div>
-    <div class="gd gd4"><img src="https://i.imgur.com/YioTRSH.jpeg" alt="Greek architecture"/><div class="gd-cap"><div class="gp-name">Greek Summer</div><div class="gp-sub">The neighbourhood</div></div></div>
+    <div class="gd gd1"><img src="https://i.imgur.com/VMdYVO5.jpeg" alt="Halkidiki aerial"/><div class="gd-cap"><div class="gp-name">Halkidiki Coastline</div><div class="gp-sub">Your doorstep</div></div></div>
+    <div class="gd gd2"><img src="https://i.imgur.com/RSu72Sz.jpeg" alt="Pool evening"/><div class="gd-cap"><div class="gp-name">Pool at Evening</div><div class="gp-sub">Garden & waterfall</div></div></div>
+    <div class="gd gd3"><img src="https://i.imgur.com/YioTRSH.jpeg" alt="Greek building"/><div class="gd-cap"><div class="gp-name">Greek Summer</div><div class="gp-sub">The neighbourhood</div></div></div>
+    <div class="gd gd4"><img src="https://i.imgur.com/bQDwPv0.jpeg" alt="Jetski sea"/><div class="gd-cap"><div class="gp-name">The Sea</div><div class="gp-sub">Turquoise water</div></div></div>
     <div class="gd gd5"><img src="https://i.imgur.com/DkuVATj.jpeg" alt="Pool night"/><div class="gd-cap"><div class="gp-name">Pool by Night</div><div class="gp-sub">Blue-lit & private</div></div></div>
-    <div class="gd gd6"><img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Bathroom"/><div class="gd-cap"><div class="gp-name">Marble Bathroom</div><div class="gp-sub">Freestanding bath</div></div></div>
-    <div class="gd gd7"><img src="https://i.imgur.com/VMdYVO5.jpeg" alt="Halkidiki"/><div class="gd-cap"><div class="gp-name">Halkidiki Coastline</div><div class="gp-sub">Thirty steps from the gate</div></div></div>
-    <div class="gd gd8"><img src="https://i.imgur.com/w2uvSD0.jpeg" alt="Caves"/><div class="gd-cap"><div class="gp-name">Sea Caves</div><div class="gp-sub">Nearby boat excursion</div></div></div>
+    <div class="gd gd6"><img src="https://i.imgur.com/w2uvSD0.jpeg" alt="Sea caves"/><div class="gd-cap"><div class="gp-name">Sea Caves</div><div class="gp-sub">Nearby excursion</div></div></div>
+    <div class="gd gd7"><img src="https://i.imgur.com/aRBJXDP.jpeg" alt="Sea cliffs"/><div class="gd-cap"><div class="gp-name">Crystal Waters</div><div class="gp-sub">Aegean sea</div></div></div>
+    <div class="gd gd8"><img src="https://i.imgur.com/ATrigGI.jpeg" alt="Swimmer"/><div class="gd-cap"><div class="gp-name">The Pool</div><div class="gp-sub">All yours</div></div></div>
   </div>
 </div>
 
