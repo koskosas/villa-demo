@@ -55,7 +55,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 #hero{height:100svh;position:relative;overflow:hidden;min-height:600px}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 2.2s ease}
 .hero-slide.active{opacity:1}
-.hero-slide img{object-fit:cover;object-position:center;}
+.hero-slide img{object-fit:cover;object-position:center;transform:none!important;transition:none!important;}
 .hero-slide.active img{transform:none}
 .hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,7,.95) 0%,rgba(12,10,7,.35) 40%,rgba(12,10,7,.12) 100%),linear-gradient(90deg,rgba(12,10,7,.55) 0%,transparent 60%)}
 .hero-body{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(1.4rem,5vw,5rem) clamp(4.5rem,9vw,6.5rem)}
@@ -374,13 +374,13 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
 <!-- HERO -->
 <section id="hero">
   <div class="hero-slide active">
-    <img src="https://i.imgur.com/DT1BOYF.jpeg" alt="Villa exterior full view" style="object-fit:cover;object-position:center center;transform:none"/>
+    <img src="https://i.imgur.com/DT1BOYF.jpeg" alt="Villa exterior full view"/>
   </div>
   <div class="hero-slide">
-    <img src="https://i.imgur.com/No5LTft.jpeg" alt="Aerial pool swimmer" style="object-fit:cover;object-position:center top;transform:none"/>
+    <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa side view pool"/>
   </div>
   <div class="hero-slide">
-    <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa side view" style="object-fit:cover;object-position:center center;transform:none"/>
+    <img src="https://i.imgur.com/ZG6yj5f.jpeg" alt="Villa garden outdoor lounge"/>
   </div>
   <div class="hero-grad"></div>
   <div class="hero-body">
@@ -439,42 +439,42 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
   <!-- MOBILE: horizontal swipe carousel with auto-advance -->
   <div class="story-stack" id="storyStack">
     <div class="story-card">
-      <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa and pool" style="object-position:center center"/>
+      <img src="https://i.imgur.com/SbdtHF4.jpeg" alt="Woman at pool" style="object-fit:cover;object-position:center;transform:none!important"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">01</div>
+        <h2 class="sc-title">The pool.<br><em>All yours.</em></h2>
+        <p class="sc-text">No shared pool, no strangers, no schedule. Cool water, warm stone, as many hours as you want. Yours from morning until midnight.</p>
+      </div>
+    </div>
+    <div class="story-card">
+      <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa and pool" style="object-fit:cover;object-position:center;transform:none!important"/>
+      <div class="sc-overlay"></div>
+      <div class="sc-body">
+        <div class="sc-num">02</div>
         <h2 class="sc-title">Your private<br><em>retreat awaits.</em></h2>
         <p class="sc-text">Villa Solaris is a fully private estate — modern architecture, lush garden, and a pool that is yours alone from sunrise to midnight.</p>
       </div>
     </div>
     <div class="story-card">
-      <img src="https://i.imgur.com/ATrigGI.jpeg" alt="Aerial pool swimmer" style="object-position:center top"/>
-      <div class="sc-overlay"></div>
-      <div class="sc-body">
-        <div class="sc-num">02</div>
-        <h2 class="sc-title">The pool.<br><em>All yours.</em></h2>
-        <p class="sc-text">No shared pool, no strangers, no schedule. Just cool water, warm stone, and as many hours as you want. Day or night — lit up, yours alone.</p>
-      </div>
-    </div>
-    <div class="story-card">
-      <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=1200&q=85&fit=crop" alt="Bedroom clean" style="object-position:center"/>
+      <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom" style="object-fit:cover;object-position:center;transform:none!important"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">03</div>
-        <h2 class="sc-title">Four rooms.<br><em>Four worlds.</em></h2>
-        <p class="sc-text">Each bedroom is designed around rest. Warm light, quality linen, silence. Wake up slowly. You are on holiday — the world can wait.</p>
+        <h2 class="sc-title">Luxury in<br><em>every detail.</em></h2>
+        <p class="sc-text">Marble floors, freestanding bath, rain shower. Every bathroom is designed like a private spa. Take your time — there is no rush.</p>
       </div>
     </div>
     <div class="story-card">
-      <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom"/>
+      <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=85&fit=crop&crop=center" alt="Villa bedroom" style="object-fit:cover;object-position:center top;transform:none!important"/>
       <div class="sc-overlay"></div>
       <div class="sc-body">
         <div class="sc-num">04</div>
-        <h2 class="sc-title">The Aegean.<br><em>Thirty steps away.</em></h2>
-        <p class="sc-text">Clear water, clean sand, and a coastline that looks exactly like Greece is supposed to. Walk out the gate — you are already there.</p>
+        <h2 class="sc-title">Four rooms.<br><em>Made for rest.</em></h2>
+        <p class="sc-text">Each bedroom designed around comfort and sleep. Quality linen, warm light, complete silence. Wake up slowly — you are on holiday.</p>
       </div>
     </div>
-  </div>
+  </div></div>
 
   <!-- Mobile dots -->
   <div class="story-mobile-dots" id="storyDots">
@@ -489,42 +489,42 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.04);padding:
     <div class="story-sticky-inner">
       <div class="story-track-h" id="storyTrackH">
         <div class="story-panel-h">
-          <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa and pool" style="object-position:center center"/>
+          <img src="https://i.imgur.com/SbdtHF4.jpeg" alt="Woman at pool" style="object-fit:cover;object-position:center;transform:none!important"/>
           <div class="sph-overlay" style="background:linear-gradient(135deg,rgba(12,10,7,.72) 0%,rgba(12,10,7,.28) 100%)"></div>
           <div class="sph-content">
             <div class="sph-num">01</div>
-            <h2 class="sph-title">Your private<br><em>retreat awaits.</em></h2>
-            <p class="sph-text">Villa Solaris is a fully private estate — modern architecture, lush garden, and a pool that is yours alone from sunrise to midnight.</p>
-          </div>
-        </div>
-        <div class="story-panel-h">
-          <img src="https://i.imgur.com/ATrigGI.jpeg" alt="Pool aerial" style="object-position:center top"/>
-          <div class="sph-overlay" style="background:rgba(12,10,7,.5)"></div>
-          <div class="sph-content">
-            <div class="sph-num">02</div>
             <h2 class="sph-title">The pool.<br><em>All yours.</em></h2>
             <p class="sph-text">No shared pool, no strangers, no schedule. Cool water, warm stone, as many hours as you want. Lit up at night. Still yours alone.</p>
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=1200&q=85&fit=crop" alt="Bedroom clean" style="object-position:center"/>
-          <div class="sph-overlay" style="background:rgba(12,10,7,.55)"></div>
+          <img src="https://i.imgur.com/ZSGrI4I.jpeg" alt="Villa and pool" style="object-fit:cover;object-position:center;transform:none!important"/>
+          <div class="sph-overlay" style="background:rgba(12,10,7,.5)"></div>
           <div class="sph-content">
-            <div class="sph-num">03</div>
-            <h2 class="sph-title">Four rooms.<br><em>Four worlds.</em></h2>
-            <p class="sph-text">Each bedroom designed around rest. Warm light, quality linen, complete silence. Wake up slowly. You are on holiday — the world can wait.</p>
+            <div class="sph-num">02</div>
+            <h2 class="sph-title">Your private<br><em>retreat awaits.</em></h2>
+            <p class="sph-text">Villa Solaris is a fully private estate — modern architecture, lush garden, and a pool that is yours alone from sunrise to midnight.</p>
           </div>
         </div>
         <div class="story-panel-h">
-          <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom"/>
+          <img src="https://i.imgur.com/3xoYRMi.jpeg" alt="Marble bathroom" style="object-fit:cover;object-position:center;transform:none!important"/>
+          <div class="sph-overlay" style="background:rgba(12,10,7,.55)"></div>
+          <div class="sph-content">
+            <div class="sph-num">03</div>
+            <h2 class="sph-title">Luxury in<br><em>every detail.</em></h2>
+            <p class="sph-text">Marble floors, freestanding bath, rain shower. Every bathroom designed like a private spa. Take your time — there is no rush.</p>
+          </div>
+        </div>
+        <div class="story-panel-h">
+          <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=85&fit=crop&crop=center" alt="Villa bedroom" style="object-fit:cover;object-position:center top;transform:none!important"/>
           <div class="sph-overlay" style="background:linear-gradient(to top,rgba(12,10,7,.65),rgba(12,10,7,.25))"></div>
           <div class="sph-content">
             <div class="sph-num">04</div>
-            <h2 class="sph-title">The Aegean.<br><em>Thirty steps away.</em></h2>
-            <p class="sph-text">Clear water, clean sand, a coastline that looks exactly like Greece is supposed to. Walk out the gate — you are already there.</p>
+            <h2 class="sph-title">Four rooms.<br><em>Made for rest.</em></h2>
+            <p class="sph-text">Each bedroom designed around comfort and sleep. Quality linen, warm light, complete silence. Wake up slowly — you are on holiday.</p>
           </div>
         </div>
-      </div>
+      </div></div>
       <div class="sph-dots" id="sphDots">
         <div class="sph-dot active"></div>
         <div class="sph-dot"></div>
